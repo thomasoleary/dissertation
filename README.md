@@ -1,2 +1,2 @@
-# comp320-work
-Repo that I can push my WIP comp320 Lit Review/Research Proposal to
+# Dissertation Work
+Currently a repository where my COMP320 R&D: Practice - Literature Review & Proposal is being pushed to.
