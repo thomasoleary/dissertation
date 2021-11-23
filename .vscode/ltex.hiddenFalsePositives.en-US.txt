@@ -1,0 +1,2 @@
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qop-tical net-works semi-conduc-tor IEEE-Xplore\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qop-tical net-works semi-conduc-tor IEEE-Xplore\\E$"}
