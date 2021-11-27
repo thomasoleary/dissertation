@@ -3,3 +3,4 @@
 {"rule":"WHETHER","sentence":"^\\QIt is up to you whether or not you would like to take part in this study.\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qfirstpage\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qsubsequentpages\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qfirstpage subsequentpages\\E$"}
