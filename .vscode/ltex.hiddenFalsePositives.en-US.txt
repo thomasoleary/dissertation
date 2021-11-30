@@ -5,3 +5,4 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Qsubsequentpages\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qfirstpage subsequentpages\\E$"}
 {"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\QSome notorious examples of PCG in video games are the world/cave generation in Minecraft \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, the character, civilization and world generation in Spore \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and the procedural texture and music generation in .kkrieger \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\QPCG has many applications in video games, some notorious examples being the world/cave generation in Minecraft \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, the character, civilization and world generation in Spore \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and the procedural texture and music generation in .kkrieger \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
