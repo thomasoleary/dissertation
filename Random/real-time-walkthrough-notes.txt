@@ -1,0 +1,61 @@
+Procedural Arrangement of Furniture for Real-Time Walkthroughs
+
+tool furnishes the rooms in the vicinity of the player, while exploring the building
+
+introduces a multi-agent based solution
+
+disadvantages to modelling every room
+    difficult to store, manage and render
+    impractical to manually do
+    viewer would only view a limited number of rooms anyway
+
+paper produces a procedural solution that generates the furniture needed in order to create the illusion of entire interiors
+
+initially the building is empty - the interiors are then created at run time just before they become vivisble to the player
+
+requirements
+    system has to generate furniture arrangementss rapidly while the player explores
+    arrangements must be persistent, such that they appear to be unaltered if a user re-enters a room
+    interiors must be plausible & interesting
+
+agents that employ local rules and simple heuristics instead of contact constraints
+
+arrange dynamically
+
+the paper regards single pieces of furniture as autonomous agents that can move around a predefined room to arrange themselves properly
+automatic heirachies
+
+
+goal of agent
+    find suitable parent, place, orient itself properly
+    also respect physical constraints (must not collide with other objects other than its parent)
+each agent contains 
+    its own size (bounding box)
+    class of possible parent objects (and for each class the sides where the agent can place itself)
+    occupation of its own sides (describes each face of its box, how much space, how many available places are left for children)
+
+the semantics allow functional relationships
+    create plausible object layouts
+    for e.g.
+        chair may stand next to a table or be solitary
+            several possible parents
+
+agent collision is based on the separating axis thereom
+
+3 states
+    search
+    arrange
+    rest
+
+
+prioritizes agents depth in the hierarchy
+    table placed before chairs etc
+
+different parts of the room are root parents for agents
+    agents can recognise these parts
+
+object layout algorithm
+    initialise all rooms
+    create agents corrseponding to the room
+    agents set to search
+    perform agent actions until all are set to "rest" or deleted
