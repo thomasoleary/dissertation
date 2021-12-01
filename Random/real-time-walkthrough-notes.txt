@@ -88,3 +88,7 @@ user input
 the tool doesn't have a set specified hierarchy
     this is handled within the semantic descriptions of the objects where the user manually sets parent objects
     system automatically works out heirachy at run-time
+
+large part is done automatically
+pain that you have to manually create each objects semantics description
+    this could be an issue if you have a lot of objects in a room

@@ -6,15 +6,13 @@ Although PCG has a lot to show and offer in game development - being used for ch
 \\
 A game that does use PCIG is Catlateral Damage \cite{game:catlateral},
 a small indie game developed by Manekoware where you play as a cat on a destructive rampage 
-in its own house. In 2017, Chris Chung (the indie developer behind the game) wrote a case study about the level design in his game \cite{what-is-pcg}. When developing Catlateral Damage, Chung was undecided on how to design the levels and ultimately went for PCIG\cite{pcg_in_gd}.
-Before the interior decoration can take place, a Squarified Treemap algorithm is used to generate the room layouts and floor plans within the level \cite{squarified-treemap}. Each room generated from this algorithm has an associated data file, this file contains the type of furniture available, maximum type of each furniture, spawn probabilities, if the furniture is placeable on walls and if the player will spawn there. The furniture objects that can be placed have physics components attached, to allow them to be accurately placed within the level - for this, a Rectangle Packing algorithm is used to place these objects within allocated surface areas on the floor and other furniture objects. Concluding the case study, Chung states that most players could not notice that the levels were procedurally generated -
-\textbf{although this is a promising statement, Chung has not shown any evidence to back this claim.}
+in its own house. In 2017, Chris Chung (the indie developer behind the game) wrote a case study about the level design in his game \cite{what-is-pcg}. When developing Catlateral Damage, Chung was undecided on how to design the levels and ultimately went for PCIG\cite{pcg_in_gd}. Before the interior decoration can take place, a Squarified Treemap algorithm is used to generate the room layouts and floor plans within the level \cite{squarified-treemap}. Each room generated from this algorithm has an associated data file, this file contains the type of furniture available, maximum type of each furniture, spawn probabilities, if the furniture is placeable on walls and if the player will spawn there. The furniture objects that can be placed have physics components attached, to allow them to be accurately placed within the level - for this, a Rectangle Packing algorithm is used to place these objects within allocated surface areas on the floor and other furniture objects. Concluding the case study, Chung states that most players could not notice that the levels were procedurally generated - \textbf{although this is a promising statement, Chung has not shown any evidence to back this claim.}
 \\
 \\
 Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have used their own techniques to emulate room interiors. \\
 \subsubsection*{Multi-Agent System}
-In 2009, T. Germer and M.Schwarz sought out to procedurally arrange a rooms' furniture in real-time. \cite{real-time-walkthroughs}. They did this by producing a Multi-Agent based solution where each furniture object, in a given room, is seen as an individual agent that seeks a suitable parent furniture object.
-The tool has 3 main requirements: \cite{real-time-walkthroughs}
+In 2009, T. Germer and M.Schwarz sought out to procedurally arrange a rooms' furniture in real-time. \cite{real-time-walkthroughs}. They did this by producing a Multi-Agent based solution where each furniture object, in a given room, is seen as an individual agent that seeks a suitable parent furniture object. A demonstration of this system can be found on YouTube \cite{youtube:real-time-walkthroughs}.
+The system has 3 main requirements: \cite{real-time-walkthroughs}
 \begin{itemize}
     \item Generate furniture arrangements rapidly
     \item Arrangements must be persistent
@@ -36,8 +34,13 @@ Each agent has only 3 states:
             \item In the \textit{Rest} state, potential child agents are now able to seek this object as a parent. If the resting agents parent moves, the resting agent will move along with it - however if this move results in a collision, its parent is lost and the agents state is changed back to \textit{Search}.
         \end{itemize}
 \end{enumerate}
-The rooms are responsible for the agents. They manage all existing agents in the room by keeping a list with their corresponding type - allowing the agents to easily identify potential parents. The room is only created if a player comes within a specified range, when the player is no longer in this range it gets removed from memory. The issue with this is that if a player were to re-enter said room, it will be furnished completely differently. The authors fixed this issue by saving a numerical value (also known as a seed) to the furnished layout - so if a player were to re-enter, the numerical value would be applied to furnish the room exactly as it was.
+The rooms are responsible for the agents. They manage all existing agents in the room by keeping a list with their corresponding type - allowing the agents to easily identify potential parents. The room is only furnished if a player comes within a specified range, when the player is no longer in this range it gets removed from memory. The issue with this is that if a player were to re-enter said room, it will be furnished differently. The authors fixed this issue by saving a numerical value (also known as a seed) to the furnished layout - so if a player were to re-enter, the numerical value would be applied to furnish the room exactly as it was.
 
+Before using this system, it requires a certain degree of user input \cite{real-time-walkthroughs}. Firstly, each room would need to have specific data such as labelled parts of the room (windows, floor, doors), how many objects, what type of objects and how many of these types can be used in this room.
+A user is also required to write the semantic description of each type of object - this includes object clearance distance, possible orientation values and potential parents (and what sides to correspond with).
+Due to the parents of each object being manually set by the user in their semantic descriptions, a hierarchy is not explicitly defined - yet handled at run-time by the system just before the agents are initialised \cite{real-time-walkthroughs}.
+
+Although a large proportion of the rooms furnishing is handled by the agents themselves, a big drawback is that each agent must have a manually defined semantic description. \textbf{This could cause a lot of issues especially if many types of objects are to be used in a room.}
 
 YouTube video demonstrating the implementation \cite{youtube:real-time-walkthroughs}
 \subsubsection*{Rule-Based Layout}
