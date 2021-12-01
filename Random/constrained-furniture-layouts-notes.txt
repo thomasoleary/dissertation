@@ -1,0 +1,40 @@
+uses a data set of 45000 apartment layouts created by humans
+
+types of contstraints
+	room size and type
+	traversability
+	gap placement & clearance
+	object placement
+	doors, windows, refurnishing
+
+parameters can be altered
+	for e.g. can manually set a specific clearance constraint on a specific side of object
+
+user study
+	presented 1400 pairs of images to 8 non-experts
+	asked to identify the image with a more realistic/natural layout of objects
+	in each case, one image was human and the other a layout from the model
+	order of the image was randomised each pair
+
+
+results from user study
+	unconstrained
+		presented images in 2 views
+			overheard
+			1st person
+		1st person was slightly preferred
+		overhead layouts are indistinguishable from human designs
+
+	constrained
+		only overhead view
+		two sets of constraints
+			1. fixed room size & placement of one object
+			2. fixed room size & door/window locations
+		
+		1. model layouts are indistinguishable from human designs up to statistical significance
+		2. human designs were preffered
+
+
+unconstrained items generate in 0.04s on average
+constrained items generate anywhere between 0.04-112 seconds
+	size + doors + windows generate in 112 seconds on average
