@@ -28,37 +28,38 @@ arrange dynamically
 the paper regards single pieces of furniture as autonomous agents that can move around a predefined room to arrange themselves properly
 automatic heirachies
 
-
-goal of agent
-    find suitable parent, place, orient itself properly
-    also respect physical constraints (must not collide with other objects other than its parent)
-each agent contains 
-    its own size (bounding box)
-    class of possible parent objects (and for each class the sides where the agent can place itself)
-    occupation of its own sides (describes each face of its box, how much space, how many available places are left for children)
-
-the semantics allow functional relationships
-    create plausible object layouts
-    for e.g.
-        chair may stand next to a table or be solitary
-            several possible parents
-
-agent collision is based on the separating axis thereom
-
-3 states
-    search
-    arrange
-    rest
-
-
-prioritizes agents depth in the hierarchy
-    table placed before chairs etc
-
 different parts of the room are root parents for agents
     agents can recognise these parts
 
 object layout algorithm
     initialise all rooms
-    create agents corrseponding to the room
+    create agents corresponding to the room
     agents set to search
     perform agent actions until all are set to "rest" or deleted
+
+search
+    starts in this state
+    searches for possible parent
+    if finds a parent suitable for its semantics
+        changes state to arrange
+    if it cant find a parent, agent is deleted
+
+arrange
+    attempts to place and orient itself
+    looks for collisions
+        uses separating axis thereom for collision detection
+    if collisions
+        re arranges with parent
+    if none
+        changes state to rest
+
+rest
+    other agents can now become child of this object (if matching semantics)
+    if this agents parent moves, it moves accordingly
+        if this results in collisions
+            state changes to search
+    agents in this state tend not to move
+
+
+prioritizes agents depth in the hierarchy
+    table placed before chairs etc

@@ -7,3 +7,5 @@
 {"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\QSome notorious examples of PCG in video games are the world/cave generation in Minecraft \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, the character, civilization and world generation in Spore \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and the procedural texture and music generation in .kkrieger \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\QPCG has many applications in video games, some notorious examples being the world/cave generation in Minecraft \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, the character, civilization and world generation in Spore \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and the procedural texture and music generation in .kkrieger \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"A_NNS","sentence":"^\\QThis patent is titled \"AI-Generated Internal Environments Based On External Geometry\" and it could be the start of PCIG being used in Triple A Titles.\\E$"}
+{"rule":"PREPOSITION_VERB","sentence":"^\\QIn the Arrange\\E$"}
+{"rule":"PREPOSITION_VERB","sentence":"^\\QIn the Arrange state, the agent attempts to place and orient itself with the parent accordingly.\\E$"}

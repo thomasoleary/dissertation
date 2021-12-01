@@ -10,12 +10,19 @@ in its own house. In 2017, Chris Chung (the indie developer behind the game) wro
 Before the interior decoration can take place, a Squarified Treemap algorithm is used to generate the room layouts and floor plans within the level \cite{squarified-treemap}. Each room generated from this algorithm has an associated data file, this file contains the type of furniture available, maximum type of each furniture, spawn probabilities, if the furniture is placeable on walls and if the player will spawn there. The furniture objects that can be placed have physics components attached, to allow them to be accurately placed within the level - for this, a Rectangle Packing algorithm is used to place these objects within allocated surface areas on the floor and other furniture objects. Concluding the case study, Chung states that most players could not notice that the levels were procedurally generated -
 \textbf{although this is a promising statement, Chung has not shown any evidence to back this claim.}
 \\
-Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have used their own techniques to emulate room interiors.
+\\
+Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have used their own techniques to emulate room interiors. \\
 \subsubsection*{Multi-Agent System}
-In 2009, T. Germer and M.Schwarz sought out to procedurally arrange a rooms' furniture in real-time. \cite{real-time-walkthroughs}. They did this by producing a Multi-Agent based solution where each furniture object, in a given 
-room, is seen as an individual agent that seeks a suitable parent furniture object.
+In 2009, T. Germer and M.Schwarz sought out to procedurally arrange a rooms' furniture in real-time. \cite{real-time-walkthroughs}. They did this by producing a Multi-Agent based solution where each furniture object, in a given room, is seen as an individual agent that seeks a suitable parent furniture object.
+The tool has 3 main requirements: \cite{real-time-walkthroughs}
+\begin{itemize}
+    \item Generate furniture arrangements rapidly
+    \item Arrangements must be persistent
+    \item Must be plausible and interesting
+\end{itemize}
+As stated earlier, each agent seeks a suitable parent in a given room - once found it would place and orient itself accordingly. These agents have custom semantic descriptions to allow them to create different object layouts, an example listed by the authors is a chair - a chair can either be set next to a table/desk but can also be isolated in its own surroundings leading it to have many possible parent objects \cite{real-time-walkthroughs}. Each agent has only 3 states; \textit{Search}, \textit{Arrange} and \textit{Rest}. All agents start in the \textit{Search} state, they begin by searching for possible parent objects - if a parent is found that suits its semantics the agents' state changes to \textit{Arrange}, if a parent can't be found at all the agent is deleted. In the \textit{Arrange} state, the agent attempts to place and orient itself with the parent accordingly. Whilst doing so, it has to check for collisions with other agents in which the Separating Axis Thereom is used \cite{separating-axis-thereom} - if no collisions are found the agents' state changes to \textit{Rest}. In the \textit{Rest} state, potential child agents are now able to seek this object as a parent. If the resting agents parent moves, the resting agent will move along with it - however if this move results in a collision, its parent is lost and the agents state is changed back to \textit{Search}.
 
-Paper \cite{real-time-walkthroughs} YouTube video demonstrating the implementation \cite{youtube:real-time-walkthroughs}
+YouTube video demonstrating the implementation \cite{youtube:real-time-walkthroughs}
 \subsubsection*{Rule-Based Layout}
 Paper \cite{rule-based-layout}
 \subsubsection*{Statistical Relationships}
