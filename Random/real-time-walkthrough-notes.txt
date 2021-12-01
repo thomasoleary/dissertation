@@ -1,5 +1,8 @@
 Procedural Arrangement of Furniture for Real-Time Walkthroughs
 
+each furniture is seen as an individual agent that seeks a suitable parent furniture object.
+
+
 tool furnishes the rooms in the vicinity of the player, while exploring the building
 
 introduces a multi-agent based solution

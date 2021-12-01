@@ -1,30 +1,20 @@
 \section{Literature Review}
-My literature review consists of two parts that I believe to be important to my research question.
-It first describes different implementations of Procedural Interior Generation (PCIG) then explores
-ways in which Artificial Intelligence (AI) is compared to Humans.
+My literature review consists of two parts that I believe to be important to my research question. It first describes different implementations of Procedural Interior Generation (PCIG) then explores ways in which Artificial Intelligence (AI) is compared to Humans.
 
 \subsection{Implementations of Procedural Interior Generation}
-Although PCG has a lot to show and offer in game development - being used for
-characters, terrain, weapons and textures - the use of Procedural Interior Generation 
-(PCIG) in games however is scarcely come by.
+Although PCG has a lot to show and offer in game development - being used for characters, terrain, weapons and textures - the use of Procedural Interior Generation (PCIG) in games however is scarcely come by.
 \\
 A game that does use PCIG is Catlateral Damage \cite{game:catlateral},
 a small indie game developed by Manekoware where you play as a cat on a destructive rampage 
-in its own house.
-In 2017, Chris Chung (the indie developer behind the game) wrote a case study about the level design in his game \cite{what-is-pcg}.
-When developing Catlateral Damage, Chung was 
-undecided on how to design the levels and ultimately went for PCIG\cite{pcg_in_gd}.
-Before the interior decoration can take place, a Squarified Treemap algorithm 
-is used to generate the room layouts and floor plans within the level \cite{squarified-treemap}.
-Each room generated from this algorithm has an associated data file, this file contains the type of furniture available, 
-maximum type of each furniture, spawn probabilities, if the furniture is placeable on walls and if the player will spawn there.
-The furniture objects that can be placed have physics components attached, to allow them to be accurately placed within the level -
-for this, a Rectangle Packing algorithm is used to place these objects within allocated surface areas on the floor and other furniture objects.
-Concluding the case study, Chung states that most players could not notice that the levels were procedurally generated -
+in its own house. In 2017, Chris Chung (the indie developer behind the game) wrote a case study about the level design in his game \cite{what-is-pcg}. When developing Catlateral Damage, Chung was undecided on how to design the levels and ultimately went for PCIG\cite{pcg_in_gd}.
+Before the interior decoration can take place, a Squarified Treemap algorithm is used to generate the room layouts and floor plans within the level \cite{squarified-treemap}. Each room generated from this algorithm has an associated data file, this file contains the type of furniture available, maximum type of each furniture, spawn probabilities, if the furniture is placeable on walls and if the player will spawn there. The furniture objects that can be placed have physics components attached, to allow them to be accurately placed within the level - for this, a Rectangle Packing algorithm is used to place these objects within allocated surface areas on the floor and other furniture objects. Concluding the case study, Chung states that most players could not notice that the levels were procedurally generated -
 \textbf{although this is a promising statement, Chung has not shown any evidence to back this claim.}
 \\
-Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have created their own techniques.
+Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have used their own techniques to emulate room interiors.
 \subsubsection*{Multi-Agent System}
+In 2009, T. Germer and M.Schwarz sought out to procedurally arrange a rooms' furniture in real-time. \cite{real-time-walkthroughs}. They did this by producing a Multi-Agent based solution where each furniture object, in a given 
+room, is seen as an individual agent that seeks a suitable parent furniture object.
+
 Paper \cite{real-time-walkthroughs} YouTube video demonstrating the implementation \cite{youtube:real-time-walkthroughs}
 \subsubsection*{Rule-Based Layout}
 Paper \cite{rule-based-layout}
@@ -34,13 +24,7 @@ Paper \cite{make-it-home}
 Paper: \cite{constrained-layouts}, uses SUNCG dataset \cite{suncg}
 
 \bigskip
-On 29th April 2021, Sony Interactive Entertainment published patent US20210121781, 
-titled "AI-Generated Internal Environments Based On External Geometry" \cite{sony-patent}.
-The patents' description goes onto explain a 
-Machine Learning (ML) tool that takes in data from the external structure of a virtual building
-and generates an interior environment just from this data.
-Although this is just a patent for an ML tool, this could be the start of PCIG being used in AAA Titles. 
+On 29th April 2021, Sony Interactive Entertainment published patent US20210121781, titled "AI-Generated Internal Environments Based On External Geometry" \cite{sony-patent}. The patents' description goes onto explain a Machine Learning (ML) tool that takes in data from the external structure of a virtual building and generates an interior environment just from this data. Although this is just a patent for an ML tool, this could be the start of PCIG being used in AAA Titles. 
 
 \subsection{Artificial Intelligence Compared to Humans}
-This is going to be a little more difficult to right about, as I haven't read a paper on this so far.
-And I have only managed to find 3 papers that talk about this, but I am not sure that they could be entirely relevant.
+This is going to be a little more difficult to right about, as I haven't read a paper on this so far. And I have only managed to find 3 papers that talk about this, but I am not sure that they could be entirely relevant.
