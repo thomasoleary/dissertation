@@ -25,7 +25,7 @@ Each agent has only 3 states:
 \begin{enumerate}
     \item Search
         \begin{itemize}
-            \item All agents start in the \textit{Search} state, they begin by searching for possible parent objects - if a parent is found that suits its semantics the agents' state changes to \textit{Arrange}, if a parent can't be found at all the agent is deleted.
+            \item All agents start in the \textit{Search} state, they begin by searching for possible parent objects - if a parent is found that suits its semantics the agents' state changes to \textit{Arrange}, if a parent can't be found at all the agent is deleted. Different parts of the room are set as the root parent for agents - floor, walls, windows and doors.
         \end{itemize}
     \item Arrange
         \begin{itemize}
@@ -36,6 +36,7 @@ Each agent has only 3 states:
             \item In the \textit{Rest} state, potential child agents are now able to seek this object as a parent. If the resting agents parent moves, the resting agent will move along with it - however if this move results in a collision, its parent is lost and the agents state is changed back to \textit{Search}.
         \end{itemize}
 \end{enumerate}
+The rooms are responsible for the agents. They manage all existing agents in the room by keeping a list with their corresponding type - allowing the agents to easily identify potential parents. The room is only created if a player comes within a specified range, when the player is no longer in this range it gets removed from memory. The issue with this is that if a player were to re-enter said room, it will be furnished completely differently. The authors fixed this issue by saving a numerical value (also known as a seed) to the furnished layout - so if a player were to re-enter, the numerical value would be applied to furnish the room exactly as it was.
 
 
 YouTube video demonstrating the implementation \cite{youtube:real-time-walkthroughs}

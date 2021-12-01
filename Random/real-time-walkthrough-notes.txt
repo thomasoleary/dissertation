@@ -60,6 +60,31 @@ rest
             state changes to search
     agents in this state tend not to move
 
+rooms are responsible for the creation of the agents
+    they manage existing agents, allowing the other agents to easily find parents
+    Different parts of the rooms are root parents for the agents
+        floor, wall, window, door
 
-prioritizes agents depth in the hierarchy
-    table placed before chairs etc
+
+the room is created only when the player is close
+    rooms are despawned/discarded once the player is too far away 
+    does not guarantee that room is furnished when visible to player
+
+persistence
+    when player leaves room, it should be discarded
+    but this will cause a different room to be arranged if the player were to enter the same room
+    to guarantee that the room will be the same, a seed is applied to the furnished layout based on its position and number
+
+
+user input
+    apply tags to parts of the room 
+        wall floor door etc
+    how many objects, what types and how many of each type can be used in this room
+    semantic description of each object
+        possible parents (and what sides to correspond with)
+        clearance distance for object
+        possible orientation values
+
+the tool doesn't have a set specified hierarchy
+    this is handled within the semantic descriptions of the objects where the user manually sets parent objects
+    system automatically works out heirachy at run-time
