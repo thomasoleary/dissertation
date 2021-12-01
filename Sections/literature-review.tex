@@ -13,14 +13,15 @@ a small indie game developed by Manekoware where you play as a cat on a destruct
 in its own house.
 In 2017, Chris Chung (the indie developer behind the game) wrote a case study about the level design in his game \cite{what-is-pcg}.
 When developing Catlateral Damage, Chung was 
-undecided on how to design the levels and ultimately went for PCG and PCIG\cite{pcg_in_gd}.
+undecided on how to design the levels and ultimately went for PCIG\cite{pcg_in_gd}.
 Before the interior decoration can take place, a Squarified Treemap algorithm 
 is used to generate the room layouts and floor plans within the level \cite{squarified-treemap}.
-Each room generated from this algorithm has an associated data file, which contains the type of furniture available, maximum type of each furniture, spawn probabilities, if the furniture is placeable on walls and if the player will spawn there.
-The furniture objects that can be placed have physics components attached to allow them to be accurately placed within the level -
+Each room generated from this algorithm has an associated data file, this file contains the type of furniture available, 
+maximum type of each furniture, spawn probabilities, if the furniture is placeable on walls and if the player will spawn there.
+The furniture objects that can be placed have physics components attached, to allow them to be accurately placed within the level -
 for this, a Rectangle Packing algorithm is used to place these objects within allocated surface areas on the floor and other furniture objects.
-Concluding the case study, Chung states that most players could not notice that the levels were procedurally generated.
-\textbf{Although this is a promising statement, Chung has not shown any evidence to back this claim. I have emailed Chung about this statement.}
+Concluding the case study, Chung states that most players could not notice that the levels were procedurally generated -
+\textbf{although this is a promising statement, Chung has not shown any evidence to back this claim.}
 
 
 \subsubsection*{Multi-Agent System}
