@@ -1,4 +1,4 @@
-a rule based layout approach that is controlled by user defined plans
+a rule based layout approach that is controlled by user defined layouts and rules.
 users specify what objects can be placed, these objects represent an instance of a class and contain rules about how these should be placed.
 
 the relationships between objects can be explicitly and implicitly defined.
