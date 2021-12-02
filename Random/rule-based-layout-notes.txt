@@ -1,14 +1,13 @@
-a rule based layout approach that is controlled by user defined layouts and rules.
-users specify what objects can be placed, these objects represent an instance of a class and contain rules about how these should be placed.
+A Rule-Based layout approach was proposed in 2009, this method would focus on user defined rules and layouts. Users would be able to specify what objects can be placed within a layout - these objects would represent an instance of a class and contain certain rules on how it should behave when being placed.
 
-the relationships between objects can be explicitly and implicitly defined.
-A user is able to explicitly create a rule in an objects class or use features. an example of explicitly defining a relationship, as told by the authors, is by setting an instance of the sofa class to always face an instance of the TV class.
+The relationships between different objects could be explicitly and implicitly defined. A user is able to explicitly create a rule in an objects class or use features. an example of explicitly defining a relationship, as told by the authors, is by setting an instance of the sofa class to always face an instance of the TV class.
 An implicitly defined relationship uses feature types. Feature types are used for checking what objects should and should not overlap. These are used as tags and are applied to specific parts of objects - for example an "OffLimit" feature type tag would be used for the bounding box of most objects.
 
 Rules can be defined in multiple ways too. They can be associated specifically with an object class, this would mean that this rule only applies to this class and any instances of it.
 Another way is by defining rules in the layout planner - this would help with objects that general rules may not be applicable to. An example listed by the authors is a chair in a meeting room, this type of object is usually sat against a wall - so this rule would be applied in a "Waiting Room Layout".
 
-the layouts solving approach is fairly easy.
-the solver is given a starting layout, an empty room
-within this room it finds possible locations for the new object (these possible locations are based upon the set of rules that the object being placed contains and the set of rules on the existing objects in the layout).
+The layout planner is responsible for sending objects to the layout solver. As stated before, the planner can have custom rules itself to allow it to be applicable to different room layouts (living room, factory floor). It also has a backtracking rule that is only triggered if an object of interest is not placeable. If this is the case, the planner would backtrack to place previous objects in different positions to allow this object to be placed.
+
+The layout solver is given an object from the planner and the type of layout (dependant if a user has applied rules to the planner). Within this layout it finds all possible locations for the new object - these possible locations are initially based upon the set rules of the object and the rules already set in place for existing objects in the layout. The possible locations then take into account specific feature types, such as the amount of clearance an object requires or the "OffLimit" tag that was mentioned earlier CITE. A Minkowski sum CITE is carried out containing these inaccessabile areas and removed from the list of possible locations.
+With this completed, the object is then given a list of all possible locations in the layout it can be placed into.
 
