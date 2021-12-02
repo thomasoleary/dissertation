@@ -33,8 +33,3 @@ results from user study
 		
 		1. model layouts are indistinguishable from human designs up to statistical significance
 		2. human designs were preffered
-
-
-unconstrained items generate in 0.04s on average
-constrained items generate anywhere between 0.04-112 seconds
-	size + doors + windows generate in 112 seconds on average

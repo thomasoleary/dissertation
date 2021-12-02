@@ -1,0 +1,71 @@
+p henderson, k subr, v Ferrari
+2017
+
+using occurance and placement statistics based on a training database of CAD model layouts.
+
+data-driven model that learns from the SUNCG database that contains over 250,000 rooms designed by humans.
+
+learns conditional statistics
+
+
+method is fully automatic
+    does allow flexibility with user-specified constraints
+
+types of constraints
+    room size & shape & type
+    accessibility
+    gap placement/clearance
+    locations of furniture
+    locations of doors, windows
+
+presents a user study
+    comparing their models against human made
+
+    models are realistic and compare favourably to human designs
+
+
+
+algorithm
+    randomly sample room type
+        from 9 room types that are learned during training
+    sample furniture based upon the room type
+    numbers/instances of each item are determined by parameters learns during training
+    once all items are picked, a "deterministic placement algorithm" calculates their placements'
+    ceiling & wall objects are sampled, furniture is placed
+
+the model uses SUNCG dataset for its training
+    a dataset that contains over 45,000 apartment layouts created by humans
+    2500 furniture CAD models are categorised
+    each model is assigned an object class - there are 170 object classes (television, bathtub, armchair)
+
+unconstrained layouts
+    generate in 0.04s on average
+
+constrained layouts
+    generate between 0.04s-112s
+        this is entirely dependent on what constraints are set
+        room type, excluding certain objects and clearance constraints generated in 0.04s on average
+        whereas room size + doors + window constraints took 112s on average
+
+user study
+    presented 1400 pairs of images to 8 non-experts
+	asked to identify the image with a more realistic/natural layout of objects
+	in each case, one image was human and the other a layout from the model
+	order of the image was randomised each pair
+
+results
+    unconstrained
+        presented in 2 different styles
+            1st person
+            overhead
+        the model was slightly preferred in 1st person
+        the model was indistinguishable from human designs in overhead
+
+    constrained
+        only overhead
+        two sets of constraints
+            1. fixed room size & placement of a singular object
+            2. fixed room size & door/window locations
+
+        1. model layouts are indistinguishable
+        2. human designs were preffered
