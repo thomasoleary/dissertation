@@ -56,6 +56,7 @@ class relationships
             when instance of TV class in the room
             sofa should face this TV
 
+
 solving mechanism
     find all possible locations for new object
         based upon:
@@ -78,3 +79,16 @@ solving mechanism
         grid based rule
             list of possible areas cut into small grids
                 size can be set inside rule
+
+job of the layout solver
+    place an object in the layout
+    making sure the rules defined in that object pass
+
+job of the layout planner
+    submits objects to the solver one by one
+    works based on procedure
+        list of rules need to be executed in order
+    backtracking rule
+        if important object can't be placed
+            planner backtracks to place previous objects in different locations
+            to allow for this new object to be placed
