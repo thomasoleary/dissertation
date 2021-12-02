@@ -10,3 +10,4 @@
 {"rule":"PREPOSITION_VERB","sentence":"^\\QIn the Arrange\\E$"}
 {"rule":"PREPOSITION_VERB","sentence":"^\\QIn the Arrange state, the agent attempts to place and orient itself with the parent accordingly.\\E$"}
 {"rule":"PREPOSITION_VERB","sentence":"^\\QArrange In the Arrange state, the agent attempts to place and orient itself with the parent accordingly.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QSomething bad.\\E$"}

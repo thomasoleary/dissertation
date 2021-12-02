@@ -1,0 +1,80 @@
+rule-based layout approach
+
+suited in conjuction with PCG methods
+
+providing solver with user defined plan 
+    users can specify objects to be placed as instances of classes
+        contain rules about how instances should be placed
+
+approach gives the opportunity to use the solver in different PCG scenarios
+
+solving approach:
+    given a starting layout
+    find possible locations of new object
+        based on set of rules for that object and existing objects in layout
+
+    use of hierachical blocks in solving process
+        when placing a table with some chairs around and plates on top
+        objects are combined and treated as a "block"
+        solving process is made more efficient
+
+
+relationships between objects can be explained in 2 ways
+    explicit
+        defining sofa needs to face the tv
+        no further than 5 meters away
+    implicit
+        use of features
+    
+feature-based class representation
+    each class can define geometric representation valid for all instances
+        consists of a number of so-called object features
+        3D shapes containing a tag
+        
+    feature type
+        tags can refer to specific feature types
+        rules are defined about which features can and cant overlap
+        e.g.
+            "OffLimit" cannot overlap any other features
+                (solid part of object - the bounding box)
+            "clearance", sets area of the object that needs to be kept clear 
+                can only overlap with other "clearance" feature types
+
+rules
+    specified in two ways
+        can be associated with a class
+            which will add the rule to every instance of that class
+        can be defined in the layout planner
+            opportunity to define rules to objects that are not generally applicable
+
+class relationships
+    can create a direct link with already placed object in layout
+        only useful when creating layout plan
+            cannot be sure which objects are already placed
+    linking object to objects belonging to a specific class
+        define rule for sofa
+            when instance of TV class in the room
+            sofa should face this TV
+
+solving mechanism
+    find all possible locations for new object
+        based upon:
+            the ground type of object
+                feature type of where object can be placed
+                    i.e. a table top, floor
+            its features
+            features of already placed object in the layout
+        clearance/offlimit features of other objects in the layout
+            use the Minkowski sum to create an area that contains this inaccessabile area
+                remove this sum from possible locations
+        possible locations set by rules connected to object
+
+    creates list of potential locations for new object
+
+    two rules handled by the solver
+        area based rule
+            defines possible placemnt area for object
+            could be next to a feature, object, on top of object ect 
+        grid based rule
+            list of possible areas cut into small grids
+                size can be set inside rule
