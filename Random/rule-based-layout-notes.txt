@@ -1,0 +1,14 @@
+a rule based layout approach that is controlled by user defined plans
+users specify what objects can be placed, these objects represent an instance of a class and contain rules about how these should be placed.
+
+the relationships between objects can be explicitly and implicitly defined.
+A user is able to explicitly create a rule in an objects class or use features. an example of explicitly defining a relationship, as told by the authors, is by setting an instance of the sofa class to always face an instance of the TV class.
+An implicitly defined relationship uses feature types. Feature types are used for checking what objects should and should not overlap. These are used as tags and are applied to specific parts of objects - for example an "OffLimit" feature type tag would be used for the bounding box of most objects.
+
+Rules can be defined in multiple ways too. They can be associated specifically with an object class, this would mean that this rule only applies to this class and any instances of it.
+Another way is by defining rules in the layout planner - this would help with objects that general rules may not be applicable to. An example listed by the authors is a chair in a meeting room, this type of object is usually sat against a wall - so this rule would be applied in a "Waiting Room Layout".
+
+the layouts solving approach is fairly easy.
+the solver is given a starting layout, an empty room
+within this room it finds possible locations for the new object (these possible locations are based upon the set of rules that the object being placed contains and the set of rules on the existing objects in the layout).
+
