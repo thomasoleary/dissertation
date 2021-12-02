@@ -11,19 +11,12 @@ in its own house. In 2017, Chris Chung (the indie developer behind the game) wro
 \\
 Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have used their own techniques to emulate room interiors. \\
 \subsubsection*{Multi-Agent System}
-In 2009, T. Germer and M.Schwarz sought out to procedurally arrange a rooms' furniture in real-time. \cite{real-time-walkthroughs}. They did this by producing a Multi-Agent based solution where each furniture object, in a given room, is seen as an individual agent that seeks a suitable parent furniture object. A demonstration of this system can be found on YouTube \cite{youtube:real-time-walkthroughs}.
-The system has 3 main requirements: \cite{real-time-walkthroughs}
-\begin{itemize}
-    \item Generate furniture arrangements rapidly
-    \item Arrangements must be persistent
-    \item Must be plausible and interesting
-\end{itemize}
-As stated earlier, each agent seeks a suitable parent in a given room - once found it would place and orient itself accordingly. These agents have custom semantic descriptions to allow them to create different object layouts, an example listed by the authors is a chair - a chair can either be set next to a table/desk but can also be isolated in its own surroundings leading it to have many possible parent objects \cite{real-time-walkthroughs}.\\
-Each agent has only 3 states:
+In 2009, T. Germer and M.Schwarz sought out to procedurally arrange a rooms' furniture in real-time. \cite{real-time-walkthroughs}. A demonstration of this system can be found on YouTube, uploaded by T. Germer himself \cite{youtube:real-time-walkthroughs}. This system involves a Multi-Agent based solution where each furniture object, in a given room, is seen as an individual agent that seeks a suitable parent furniture object. These agents have custom semantic descriptions to allow them to create different object layouts, an example listed by the authors is a chair - a chair can either be set next to a table/desk but can also be isolated in its own surroundings leading it to have many possible parent objects \cite{real-time-walkthroughs}.\\
+Each agent has 3 states:
 \begin{enumerate}
     \item Search
         \begin{itemize}
-            \item All agents start in the \textit{Search} state, they begin by searching for possible parent objects - if a parent is found that suits its semantics the agents' state changes to \textit{Arrange}, if a parent can't be found at all the agent is deleted. Different parts of the room are set as the root parent for agents - floor, walls, windows and doors.
+            \item All agents start in this state, they begin by searching for possible parent objects - if a parent is found that suits its semantics the agents' state changes to \textit{Arrange}, if a parent can't be found at all the agent is deleted. Different parts of the room are set as the root parent for agents - floor, walls, windows and doors.
         \end{itemize}
     \item Arrange
         \begin{itemize}
@@ -34,8 +27,6 @@ Each agent has only 3 states:
             \item In the \textit{Rest} state, potential child agents are now able to seek this object as a parent. If the resting agents parent moves, the resting agent will move along with it - however if this move results in a collision, its parent is lost and the agents state is changed back to \textit{Search}.
         \end{itemize}
 \end{enumerate}
-The rooms are responsible for the agents. They manage all existing agents in the room by keeping a list with their corresponding type - allowing the agents to easily identify potential parents. \hl{The room is only furnished if a player comes within a specified range, when the player is no longer in this range it gets removed from memory. The issue with this is that if a player were to re-enter said room, it will be furnished differently. The authors fixed this issue by saving a numerical value (also known as a seed) to the furnished layout - so if a player were to re-enter, the numerical value would be applied to furnish the room exactly as it was.}
-
 Before using this system, it requires a certain degree of user input \cite{real-time-walkthroughs}. Firstly, each room would need to have specific data such as labelled parts of the room (windows, floor, doors), how many objects, what type of objects and how many of these types can be used in this room.
 A user is also required to write the semantic description of each type of object - this includes object clearance distance, possible orientation values and potential parents (and what sides to correspond with).
 Due to the parents of each object being manually set by the user in their semantic descriptions, a hierarchy is not explicitly defined - yet handled at run-time by the system just before the agents are initialised \cite{real-time-walkthroughs}.
@@ -47,7 +38,27 @@ Paper \cite{rule-based-layout}
 \subsubsection*{Statistical Relationships}
 Paper \cite{make-it-home}
 \subsubsection*{Constraints}
-Paper: \cite{constrained-layouts}, uses SUNCG dataset \cite{suncg}
+In 2017 P. Henderson, K. Subr and V. Ferrari presented a data driven model that learns from the SUNCG \cite{suncg} database to generate furniture layouts \cite{constrained-layouts}. This database contains over 45000 apartment layouts that are designed by humans, from this 45000 - 2500 CAD models are categorised into furniture, these models are then assigned an object class of which there is 170 of (television, bed, table).
+Their model is presented in such a way that it can be left to be fully automated \cite{constrained-layouts}, but does allow flexibility with the user allowing them to change constraints within the layout.\\
+These constraints include:
+\begin{itemize}
+    \item Room size, shape \& type 
+    \item Accessibility
+    \item Exclusion of Object classes
+    \item Furniture clearance 
+    \item Locations of specified furniture
+    \item Locations of doors \& windows
+\end{itemize}
+Upon generating layouts, the results varied dependent on the set constraints applied to the room. Layouts that had no set constraints were found to be generating in 0.04 seconds on average \cite{constrained-layouts}. Whereas layouts that did have constraints applied, generated anywhere between 0.04-112 seconds on average \cite{constrained-layouts}. This large difference in generation times drastically varies solely on what constraint was set -  room size, object exclusion and clearance constraints all generated in 0.04 seconds on average, whereas the combination of room size and the locations of doors \& windows took around 112 seconds to generate.
+
+A user study is carried out in their paper, where 1400 pairs of layouts are presented to 8 non-experts in an image format \cite{constrained-layouts}. These participants are asked to identify the layout that has a more realistic/natural setting. In each pair one layout is from their model, the other being human designed - the order in which these images are shown are randomised per pair.
+In this study, both constrained and unconstrained layouts are put to the test. For unconstrained layouts, they were presented in 2 different styles; 1st person and an overhead view. Layouts that were presented in 1st person, were seen to be slightly preferred over the human designs and those presented overhead were seen to be indistinguishable from human designs.
+Constrained layouts were only presented in an overhead format, but two sets of constraints were used:
+\begin{enumerate}
+    \item[i.] Fixed room size \& fixed placement of a singular object
+    \item[ii.] Fixed room size \& fixed door/window locations
+\end{enumerate}
+The constrained layouts of (i), the model layouts were seen to be indistinguishable from those of human design. Whereas the layouts of (ii), human designs were preferred over the models.
 
 \bigskip
 On 29th April 2021, Sony Interactive Entertainment published patent US20210121781, titled "AI-Generated Internal Environments Based On External Geometry" \cite{sony-patent}. The patents' description goes onto explain a Machine Learning (ML) tool that takes in data from the external structure of a virtual building and generates an interior environment just from this data. Although this is just a patent for an ML tool, this could be the start of PCIG being used in AAA Titles. 
