@@ -1,16 +1,13 @@
 rule-based layout approach
 
-suited in conjuction with PCG methods
-
 providing solver with user defined plan 
     users can specify objects to be placed as instances of classes
         contain rules about how instances should be placed
 
-approach gives the opportunity to use the solver in different PCG scenarios
 
 solving approach:
     given a starting layout
-    find possible locations of new object
+    find possible locations for new object
         based on set of rules for that object and existing objects in layout
 
     use of hierachical blocks in solving process
