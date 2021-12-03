@@ -23,7 +23,41 @@ perceptual study
 
         "select the one you would prefer to live, say, work, visit"
 
+relationships
+    spatial
+        distance of an object to its nearest wall & orientation
+    hierarchial
+        given two objects A & B 
+            A is defined as the parent of B
+                if A is supporting B by a certain surface
+                example, candle (B) placed on a table (A)
+        all objects supported by the floor/wall (seen as the root)
+            are considered "first-tier objects"
+                (bed, table, clock on the wall)
+            objects supported by a first-tier are considered second-tier objects
+                (candle, plate)
+    pairwise
+        certain objects interact with eachother in pairs
+            subject to pairwise orientation and distance constraints
+                (TV and a Sofa, table and chairs)
+        these can be set by selecting two objects in the UI 
+            the mean relative distance and angles are extracted
+                used for pairwise constraints
 
+with these prior defined relationships
+    a cost function is used to quantify the qualify of the arrangement
+
+furniture positions and orientations depend on numerous factors
+    whether the object should be visible or accessible
+    to tackle the issue of global optimisation simulated annealing and a Metropolis-Hastings state search step is used.
+    
+    simulated annealing
+        computational imitation of the annealing process
+            gradually lowers the temperature of a bath that controls the thermal dynamics of a solid to bring it into a low-energy state. (CITE PAPER ABOUT SIMULATED ANNEALING?????).
+
+        furniture is originally set to be "heated up" to allow flexible arrangement and are able to refine their arrangement as they "cool down"
+        Each temperature decrement Metropolis-Hastings is used to determine the furnitures transition probability.
+        
 
 
 
@@ -37,4 +71,3 @@ bayesian analysis
     determine the number of participants who selected the synthesized layout was what would be expected by chance
     or a preferance pattern
     binomial distribution
-    
