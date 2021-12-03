@@ -1,0 +1,6 @@
+object relationships
+
+furniture position and orientations
+cost functionality
+
+perceptual study
