@@ -1,1 +1,40 @@
 make-it-home
+
+hierarchial and spatial relationships
+
+ergonomic factors
+    visibility/accessibility
+
+assembled into a cost function
+    yields "realistc furninute arrangements"
+
+
+cost function is optimised using a Metropolis-Hastings state search step
+
+perceptual study
+    perceived functionality of the automatically synthesized results relative to human designed arrangements
+
+    two hypothesis
+        1. users perceive no significant difference between synthesized and human designed arrangements
+        2. users do perceive significant differences
+
+        25 volunteers
+            unaware of the purpose of the study
+
+        "select the one you would prefer to live, say, work, visit"
+
+
+
+
+
+
+
+
+chi-square analysis
+    only one dimension
+
+bayesian analysis
+    determine the number of participants who selected the synthesized layout was what would be expected by chance
+    or a preferance pattern
+    binomial distribution
+    
