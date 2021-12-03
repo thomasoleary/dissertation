@@ -11,17 +11,6 @@ assembled into a cost function
 
 cost function is optimised using a Metropolis-Hastings state search step
 
-perceptual study
-    perceived functionality of the automatically synthesized results relative to human designed arrangements
-
-    two hypothesis
-        1. users perceive no significant difference between synthesized and human designed arrangements
-        2. users do perceive significant differences
-
-        25 volunteers
-            unaware of the purpose of the study
-
-        "select the one you would prefer to live, say, work, visit"
 
 relationships
     spatial
@@ -45,7 +34,7 @@ relationships
                 used for pairwise constraints
 
 with these prior defined relationships
-    a cost function is used to quantify the qualify of the arrangement
+    a cost function is used to quantify the quality of the arrangement
 
 furniture positions and orientations depend on numerous factors
     whether the object should be visible or accessible
@@ -56,8 +45,61 @@ furniture positions and orientations depend on numerous factors
             gradually lowers the temperature of a bath that controls the thermal dynamics of a solid to bring it into a low-energy state. (CITE PAPER ABOUT SIMULATED ANNEALING).
 
         furniture is originally set to be "heated up" to allow flexible arrangement and are able to refine their arrangement as they "cool down"
-        Each temperature decrement Metropolis-Hastings is used to determine the furnitures transition probability.
-        
+        Each temperature decrement, Metropolis-Hastings is used to determine the furnitures transition probability. (CITE PAPER ABOUT M-H ALGORITHM)
+            in other words the M-H algorithm is used to pass multiple positional values of the furniture to the simulated annealing function
+
+cost function
+    accessible
+        object must be "accessible" to be functional
+            cost increases when an object moves into the accessible area of another object (higher cost == higher priority)
+        the objects position is measure in the cost function
+    visibility
+        some objects must be viewed from a specific direction
+            (TV, painting etc)
+        every object that must be "visible"
+            a "viewing frustrum" constraint is applied
+        if an object moves into another objects viewing frustrum
+            cost increases in order to make a change to this (higher cost == higher priority)
+                cost function for this is similar but instead of the objects accessible space
+                    its viewing frustrum values are used
+    pathway
+        the paths in the furniture arrangement are defined by a cubic bezier curve
+            approximated by a series of rectangular objects
+        changing the path would be as simple as changing the control points of the bezier curves
+        cost function is similar to that of visibility
+            but applied to the rectangular objects in the pathway
+    prior
+        extract prior distance & orientation of the nearest wall from each furniture
+        prior distance & orientation is subtracted from the current position value of the furniture (distance & orientation)
+    pairwise
+        the pairwise cost function is defined similar to that of prior cost function
+            such that the distance and orientation values are between paired furniture 
+                rather than dist and orientation of the nearest wall etc
+
+    overall cost function
+        accessible + visibility + pathway + prior + pairwise
+        each function being given an individual weighting
+
+perceptual study
+    perceived functionality of the automatically synthesized results relative to human designed arrangements
+
+    two hypothesis
+        1. users perceive no significant difference between synthesized and human designed arrangements
+        2. users do perceive significant differences
+
+        25 volunteers
+            unaware of the purpose of the study
+            14 of which said they did not have any expertise in interior design
+
+        each participant viewed a total of 35 pairs (total of 70 images)
+            5 paired comparison * 7 scenarios * (1 synthesized & 1 human)
+
+        "select the one you would prefer to live, say, work, visit"
+
+        synthesized model is considered if human designed arrangements are not "clear" winners
+
+        of the 35 pairs shown
+            13 of which showed that the synthesized model was preferred
 
 
 
