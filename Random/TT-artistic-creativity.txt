@@ -1,0 +1,45 @@
+TT-artistic-creativity
+
+considers the TT in the domain of art
+    passed "behaviourally"
+        non-interactive examples "AARON" and "Emmy" have passed in strong from
+
+raises a problem concerning the concept of creativity
+    personal opinion
+    may be no such thing as computer art because there is no such thing as computer creativity
+
+provides further discussion about the immitation game
+    in the context of computational creativity
+
+
+
+A regular TT is rather different to the TT in the context of art creativity
+
+proposes a TT oriented around art
+
+the human carrying out the TT contemplates
+    (listens to, looks at, sometimes interacts with)
+    the result produced by the computer for five minutes
+
+for the "artistic" program to pass the TT
+    (1) indistinguishable from one produced by a human being
+    and/or
+    (2) was seen as having much aesthetic value as one produced by a human being
+
+(2) the machines performance might only be comparable only to realtively mediocre human art
+    or world class
+
+could count as passing the TT regardless
+    the original TT did not require the machine to be "mistaken for a highly skilled wordsmith"
+
+computer artwork that completely independant from human intervention can be considered for the TT
+    computer assisted art does not count
+    photoshop does not count
+
+    non-interactive computer art would provide a stronger pass than interactive
+        the more direct the human influence - the less persuasive the "pass"
+
+        bodily movements could make the colours change unpredictably
+            may not be aware of this is happening
+            cannot mould the artwork in a particular way due to the unpredictably
+            creative responsibility is highly limited
