@@ -9,6 +9,12 @@ Each decrement in temperature, the M-H algorithm is used (a Markov Chain method 
 
 As stated earlier, the use of the cost function is to quantify the realism/functionality of the state of the furnitures arrangement. There are 5 overall stages to the cost function.
 
+
+To see if the use of the cost function did produce furniture arrangements with a realistic/functional state, the system was put to the test in a perceptual study against human designed interiors. 25 volunteers (14 of which stated that they did not have any expertise in interior design) were used in this study and were unaware of its true purpose. Each participant viewed a total of 35 pairs, in each pair containing a synthesized arrangement and a human designed arrangement. The participants were told to select the furniture arrangement that they would prefer (live, stay, work or visit). The synthesized arrangement would only be considered to have been the victor if the human designs were not shown as the "clear" winners within the results. Of the 35 pairs shown to the volunteers, only 13 synthesized arrangements were seen to be the preferred choice.
+
+
+
+
 furniture position and orientations
 cost functionality
 

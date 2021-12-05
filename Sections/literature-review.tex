@@ -2,11 +2,11 @@
 \hl{My literature review consists of two parts that I believe to be important to my research question. It first describes different implementations of Procedural Interior Generation (PCIG) then explores ways in which Artificial Intelligence (AI) is compared to Humans.}
 
 \subsection{Implementations of Procedural Interior Generation}
-Although PCG has a lot to show and offer in game development \hl{- being used for characters, terrain, and textures -} the use of Procedural Interior Generation (PCIG) in games however is scarcely come by.
+Although PCG has a lot to show and offer in game development, the use of Procedural Interior Generation (PCIG) in games however is scarcely come by.
 \\
 A game that does use PCIG is Catlateral Damage \cite{game:catlateral},
 a small indie game developed by Manekoware where you play as a cat on a destructive rampage 
-in its own house. In 2017, Chris Chung (the developer behind the game) wrote a case study about the level design in his game \cite[Chapter~6]{pcg_in_gd}. When developing Catlateral Damage, Chung was undecided on how to design the levels and ultimately went for PCIG\cite[Chapter~6]{pcg_in_gd}. Before the interior decoration can take place, a Squarified Treemap algorithm is used to generate the room layouts and floor plans within the level \cite{squarified-treemap}. Each room generated from this algorithm has an associated data file, this file contains data such as furniture available and maximum type of each furniture. The furniture objects that can be placed, have physics components attached to allow them to be accurately placed within the level - for this, a Rectangle Packing algorithm \cite{rectangle-packing} is used to place these objects within allocated surface areas on the floor and on top other furniture objects. Concluding the case study, Chung states that most players could not notice that the levels were procedurally generated - \hl{although this is a promising statement, Chung has not shown any evidence to back this claim.}
+in its own house. In 2017, Chris Chung (the developer behind the game) wrote a case study about the level design in his game \cite[Chapter~6]{pcg_in_gd}. When developing Catlateral Damage, Chung was undecided on how to design the levels and ultimately went for PCIG\cite[Chapter~6]{pcg_in_gd}. Before the interior decoration can take place, a Squarified Treemap algorithm is used to generate the room layouts and floor plans within the level \cite{squarified-treemap}. Each room generated from this algorithm has an associated data file, this file contains data such as furniture available and maximum type of each furniture. The furniture objects that can be placed, have physics components attached to allow them to be accurately placed within the level - for this, a Rectangle Packing algorithm \cite{rectangle-packing} is used to place these objects within allocated surface areas on the floor and on top other furniture objects. Concluding the case study, Chung states that most players could not notice that the levels were procedurally generated - although this is a promising statement, Chung has not shown any evidence to back this claim.
 \\
 On 29th April 2021, Sony Interactive Entertainment published patent US20210121781, titled "AI-Generated Internal Environments Based On External Geometry" \cite{sony-patent}. The patents' description goes onto explain a Machine Learning (ML) tool that takes in data from the external structure of a virtual building and generates an interior environment just from this data. \hl{Although this is just a patent for an ML tool, this could be the start of PCIG being used in AAA Titles. }
 \bigskip
@@ -14,7 +14,7 @@ On 29th April 2021, Sony Interactive Entertainment published patent US2021012178
 
 Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have used their own techniques to emulate room interiors.
 \subsubsection*{Multi-Agent System}
-In 2009, T. Germer and M.Schwarz sought out to procedurally arrange a rooms' furniture in real-time. \cite{real-time-walkthroughs}. A demonstration of this system can be found on YouTube, uploaded by T. Germer himself \cite{youtube:real-time-walkthroughs}. This system involves a Multi-Agent based solution where each furniture object, in a given room, is seen as an individual agent that seeks a suitable parent furniture object. These agents have custom semantic descriptions to allow them to create different object layouts, an example listed by the authors is a chair - a chair can either be set next to a table/desk but can also be isolated in its own surroundings leading it to have many possible parent objects \cite{real-time-walkthroughs}.\\
+In 2009, T. Germer and M.Schwarz sought out to procedurally arrange a rooms' furniture in real-time. \cite{real-time-walkthroughs}\cite{youtube:real-time-walkthroughs}. This system involves a Multi-Agent based solution where each furniture object, in a given room, is seen as an individual agent that seeks a suitable parent furniture object. These agents have custom semantic descriptions to allow them to create different object layouts, an example listed by the authors is a chair - a chair can either be set next to a table/desk but can also be isolated in its own surroundings leading it to have many possible parent objects \cite{real-time-walkthroughs}.\\
 Each agent has 3 states:
 \begin{enumerate}
     \item Search
@@ -77,18 +77,13 @@ Constrained layouts were only presented in an overhead format, but two sets of c
 \hl{Something good. Something user study. Something bad.}
 
 \subsubsection*{Statistical Relationships}
-In 2011, a PCIG system using statistical relationships was proposed \cite{make-it-home}.
-This system would take in existing relationships from previous working examples (spatial, hierarchical and pairwise relationships) and pass these relationships into a cost function.
-The spatial relationship represents the objects distance and orientation to its nearest wall. The hierarchical relationship, similar to other papers, represents a child/parent relationship between objects - an example listed by the authors is a candle (child) placed on a table (parent).
-The pairwise relationship represents the interaction between different pairs of objects (TV and a sofa), these pairs are subject to each other's distance and orientation constraints.
-
+In 2011, a PCIG system using statistical relationships was proposed\cite{make-it-home}\cite{youtube:make-it-home}. This system would take in existing relationships from previous working examples (spatial, hierarchical and pairwise relationships) and pass these relationships into a cost function. The spatial relationship represents the objects distance and orientation to its nearest wall. The hierarchical relationship, similar to other papers, represents a child/parent relationship between objects - for example a candle (child) placed on a table (parent). The pairwise relationship represents the interaction between different pairs of objects (TV and a sofa), these pairs are subject to each other's distance and orientation constraints.
 %Before the cost function is used in this system, a mix of Simulated Annealing and the Metropolis-Hastings (M-H) algorithm is used.
 %Simulated Annealing originates from the physical process Annealing used to heat objects to remove defects and slowly bring the object back down into a low-energy state \cite{simulated-annealing} - in this system, it is used for the placement of the furniture. At first the objects are "heated up" to allow for more freedom whilst they are arranging until they "cool down", with each temperature decrement the cost function is called to evaluate the current state of the arrangement.
 %Each decrement in temperature, the M-H algorithm is used (a Markov Chain method that is used for passing multiple positional variables to the simulated annealing process \cite{understanding-mh-algorithm}).
-
 %As stated earlier, the use of the cost function is to quantify the realism/functionality of the state of the furniture arrangement. 
-The cost function is used to quantify the realism/functionality of the state of the furniture arrangement.
-The higher the cost of an object, the higher the priority it takes. There are 5 overall stages to the cost function.
+The cost function is used to quantify the realism/functionality of the state of the furniture arrangement. The higher the cost of an object, the higher the priority it takes. 
+There are 5 stages to the cost function - each stage of the cost function has an individual weighting and adds to the overall cost of the objects' arrangement.
 \begin{itemize}
     \item Accessibility
         \begin{itemize}
@@ -111,10 +106,9 @@ The higher the cost of an object, the higher the priority it takes. There are 5 
             \item Similar to the Prior cost function, the pairwise cost function is defined to subtract the distance and orientation of the paired objects.
         \end{itemize}
 \end{itemize}
+To see if the use of the cost function did produce furniture arrangements with a realistic/functional state, the system was put to the test in a perceptual study against human designed interiors. 25 volunteers (14 of which stated that they did not have any expertise in interior design) were used in this study and were unaware of its true purpose. Each participant viewed a total of 35 pairs, in each pair containing a synthesized and a human designed arrangement. The participants were told to select the furniture arrangement that they would prefer (live, stay, work or visit). The synthesized arrangement would only be considered to have been the victor if the human designs were not shown as the "clear" winners within the results. Of the 35 pairs shown to the volunteers, only 13 synthesized arrangements were seen to be the preferred choice.
 
-
-
-YouTube video \cite{youtube:make-it-home}
+\hl{Something good. Something bad.}
 
 \subsection{Artificial Intelligence Compared to Humans}
 This is going to be a little more difficult to write about, as I haven't read a paper on this so far. And I have only managed to find 3 papers that talk about this, but I am not sure that they could be entirely relevant.
