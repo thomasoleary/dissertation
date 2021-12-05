@@ -77,10 +77,42 @@ Constrained layouts were only presented in an overhead format, but two sets of c
 \hl{Something good. Something user study. Something bad.}
 
 \subsubsection*{Statistical Relationships}
-Paper \cite{make-it-home}
+In 2011, PCIG system using statistical relationships was proposed \cite{make-it-home}.
+This system would take in existing relationships from previous working examples (spatial, hierarchical and pairwise relationships) and pass these relationships into a cost function that is used to quantify a realistic and/or functional arrangement.
+The spatial relationship represents the objects distance and orientation to its nearest wall. The hierarchical relationship, similar to other papers, represents a child/parent relationship between objects - an example listed by the authors is a candle (child) placed on a table (parent).
+The pairwise relationship represents the interaction between different pairs of objects (TV and a sofa), these pairs are subject to each other's distance and orientation constraints.
+
+Before the cost function is used in this system, a mix of Simulated Annealing and the Metropolis-Hastings (M-H) algorithm is used.
+Simulated Annealing originates from the physical process Annealing used to heat objects to remove defects and slowly bring the object back down into a low-energy state \cite{simulated-annealing} - in this system, it is used for the placement of the furniture. At first the objects are "heated up" to allow for more freedom whilst they are arranging until they "cool down", with each temperature decrement the cost function is called to evaluate the current state of the arrangement.
+Each decrement in temperature, the M-H algorithm is used (a Markov Chain method that is used for passing multiple positional variables to the simulated annealing process \cite{understanding-mh-algorithm}).
+
+As stated earlier, the use of the cost function is to quantify the realism/functionality of the state of the furniture arrangement. The higher the cost of an object, the higher the priority it takes. There are 5 overall stages to the cost function.
+\begin{itemize}
+    \item Accessibility
+        \begin{itemize}
+            \item For an object to be "functional", it must be accessible. Each object has a defined \textit{Accessible Space} as well as \textit{Bounding Box}. Whenever another object enters another \textit{Accessible Space}, the cost increases. Within this function, only the objects positional values are passed as it was found to be better for optimization.
+        \end{itemize}
+    \item Visibility
+        \begin{itemize}
+            \item Certain objects must be viewed from a specific direction - these objects are given a \textit{Viewing Frustum} (some objects include TV's and paintings). Similarly to the Accessibility cost function, whenever another object obstructs a \textit{Viewing Frustum}, the frustums values are passed in and the cost increases.
+        \end{itemize}
+    \item Pathways
+        \begin{itemize}
+            \item Within the furniture arrangements, pathways are created using \textit{Cubic Bézier curves}. These curves are represented as rectangles in the 3D space. The cost function is similar to that of Accessibility \& Visibility, yet in this case the control points of the Bézier curve is used as the positional value and applied to the rectangles used to represent the pathway in the arrangement.
+        \end{itemize}
+    \item Prior Spatial Relationships
+        \begin{itemize}
+            \item The prior Spatial relationship (distance and orientation of the nearest wall) is subtracted from the objects current Spatial relationship.
+        \end{itemize}
+    \item Pairwise Relationships
+        \begin{itemize}
+            \item Similar to the Prior cost function, the pairwise cost function is defined to subtract the distance and orientation of the paired objects.
+        \end{itemize}
+\end{itemize}
+
+
+
 YouTube video \cite{youtube:make-it-home}
-Simulated annealing \cite[Chapter~3]{simulated-annealing}
-M-H algorithm \cite{understanding-mh-algorithm}
 
 \subsection{Artificial Intelligence Compared to Humans}
 This is going to be a little more difficult to write about, as I haven't read a paper on this so far. And I have only managed to find 3 papers that talk about this, but I am not sure that they could be entirely relevant.

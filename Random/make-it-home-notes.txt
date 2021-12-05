@@ -1,6 +1,13 @@
+In 2011, PCIG system using statisical relationships was proposed CITE:MAKE-IT-HOME.
+This system would take in existing relationships from previous working examples (spatial, hierarchial and pairwise relationships) and pass these relationships into a cost function that is used to quantify a realistic and/or functional arrangement.
+The spatial relationship represents the objects distance and orientation to its nearest wall. The hierarchial relationship, similar to other papers, represents a child/parent relationship between objects - an example listed by the authors is a candle (child) placed on a table (parent).
+The pairwise relationship represents the interaction between different pairs of objects (TV and a sofa), these pairs are subject to eachothers distance and orientation constraints.
 
+Before the cost function is used in this system, a mix of Simulated Annealing and the Metropolis-Hastings (M-H) algorithm is used.
+Simulated Annealing originates from the physical process Annealing used to heat objects to remove defects and slowly bring the object back down into a low-energy state CITE:SIMULATED-ANNEALING - in this system, it is used for the placement of the furniture. At first the objects are "heated up" to allow for more freedom whilst they are arranging until they "cool down", with each temperature decrement the cost function is called to evaluate the current state of the arrangement.
+Each decrement in temperature, the M-H algorithm is used (a Markov Chain method that is used for passing multiple positional variables to the simulated annealing process CITE:M-H).
 
-object relationships
+As stated earlier, the use of the cost function is to quantify the realism/functionality of the state of the furnitures arrangement. There are 5 overall stages to the cost function.
 
 furniture position and orientations
 cost functionality

@@ -11,3 +11,4 @@
 {"rule":"PREPOSITION_VERB","sentence":"^\\QIn the Arrange state, the agent attempts to place and orient itself with the parent accordingly.\\E$"}
 {"rule":"PREPOSITION_VERB","sentence":"^\\QArrange In the Arrange state, the agent attempts to place and orient itself with the parent accordingly.\\E$"}
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QSomething bad.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_RULE","sentence":"^\\QPathways Pathways within the furniture arrangements are created using Cubic Bezier Curves Prior Spatial Relationships 4 Pairwise Relationships 5\\E$"}
