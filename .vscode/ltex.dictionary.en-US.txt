@@ -31,3 +31,4 @@ CGAL
 SIGGRAPH
 PCGames
 Subr
+ScriptableObject
