@@ -10,16 +10,18 @@ A game that does use PCIG is Catlateral Damage \cite{game:catlateral}, a small i
 \hl{On 29th April 2021, Sony Interactive Entertainment published patent US20210121781, titled "AI-Generated Internal Environments Based On External Geometry" CITE PATENT. The patents' description goes onto explain a Machine Learning (ML) tool that takes in data from the external structure of a virtual building and generates an interior environment just from this data. Although this is just a patent for an ML tool, this could be the start of PCIG being used in AAA Titles.}
 
 \bigskip
-Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have used their own techniques to emulate room interiors. I will go onto to talking about how these implementations are done \hl{and give a conclusion}.
+Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have used their own techniques to emulate room interiors. I will explain how these implementations work and \hl{something conclusion based on each one}.
 
 \bigskip
 \subsubsection{Multi-Agent System}
-In 2009, T. Germer and M. Schwarz sought out to procedurally arrange a rooms' furniture in real-time. \cite{real-time-walkthroughs}\cite{youtube:real-time-walkthroughs}. This system involves a Multi-Agent (M-A) based solution where each furniture object, in a given room, is seen as an individual agent that seeks a suitable parent furniture object. These agents have custom semantic descriptions to allow them to create different object layouts, an example listed by the authors is a chair - a chair can either be set next to a table/desk but can also be isolated in its own surroundings leading it to have many possible parent objects.\\
+In 2009, \textit{T. Germer, et al.} \cite{real-time-walkthroughs} sought out to procedurally arrange a rooms' furniture in real-time. 
+The aim for this system was to allow the quick generation of a rooms' interior while a player is walking around a building - a live demonstration of this can be viewed on YouTube \cite{youtube:real-time-walkthroughs}.
+This system involves a Multi-Agent (M-A) based solution where each furniture object, in a given room, is seen as an individual agent that seeks a suitable parent furniture object. These agents have custom semantic descriptions to allow them to create different object layouts. %, an example listed by the authors is a chair - a chair can either be set next to a table/desk but can also be isolated in its own surroundings leading it to have many possible parent objects.\\
 Each agent has 3 states:
 \begin{enumerate}
     \item Search
         \begin{itemize}
-            \item All agents start in this state, they begin by searching for possible parent objects - if a parent is found that suits its semantics the agents' state changes to \textit{Arrange}, if a parent can't be found at all the agent is deleted.
+            \item All agents start in this state, they begin by searching for possible parent objects - if a parent is found that suits its semantics, the agents' state changes to \textit{Arrange}, if a parent can't be found at all the agent is deleted.
         \end{itemize}
     \item Arrange
         \begin{itemize}
@@ -30,30 +32,32 @@ Each agent has 3 states:
             \item In the \textit{Rest} state, potential child agents are now able to seek this object as a parent. If the parent moves, the resting agent will move along with it - however if this move results in a collision, its parent is lost and the agents state is changed back to \textit{Search}.
         \end{itemize}
 \end{enumerate}
-Before using this system, it requires a certain degree of user input \cite{real-time-walkthroughs}. Firstly, each room would need to have specific data such as labelled parts of the room (windows, floor, doors) and how many objects can be in the room.
-A user is also required to write the semantic description of each type of object - these include potential parent types and the amount of clearance the object requires.
+%Before using this system, it requires a certain degree of user input \cite{real-time-walkthroughs}. Firstly, each room would need to have specific data such as labelled parts of the room (windows, floor, doors) and how many objects can be in the room. A user is also required to write the semantic description of each type of object - these include potential parent types and the amount of clearance the object requires.
 %Due to the parents of each object being manually set by the user in their semantic descriptions, a hierarchy is not explicitly defined - yet handled at run-time by the system just before the agents are initialised \cite{real-time-walkthroughs}.
 
-\hl{Something good, something bad}
-\hl{Although a large proportion of the rooms furnishing is handled by the agents themselves, a big drawback is that each agent must have a manually defined semantic description. This could cause a lot of issues especially if many types of objects are to be used in a room.}
+Although a large proportion of the rooms furnishing is handled by the agents themselves, a big drawback is that the system requires a lot of user input before this can happen. Every room must have clear user defined data and every object type must have manually defined semantic descriptions. If starting from scratch this process can take a long time, but each object type only requires a singular semantic description. Some objects with matching behaviors can also share semantics - this creates a lot of flexibility when designing the agents as they are \hl{completely autonomous of one another}\cite{real-time-walkthroughs}.
+Another issue with this implementation is that the system is never evaluated based upon how realistic or natural the furniture arrangements are based upon human designs. 
+
 
 \bigskip
 \subsubsection{Rule-Based Layout}
-A Rule-Based layout approach was proposed in 2009, this method would focus on user defined rules and layouts \cite{rule-based-layout}. Users would be able to specify what objects can be placed within a layout - these would represent an instance of a class and contain certain rules on how it should be placed.
+A Rule-Based layout approach was proposed in 2009, users would be able to specify what objects can be placed within a layout - these would represent an instance of a class and contain certain rules on how it should be placed \cite{rule-based-layout}.
 
-The relationships between different objects could be explicitly and implicitly defined. A user is able to explicitly create a rule in an objects class or use features. An example of explicitly defining a relationship, as told by the authors, is by setting a rule for the sofa class to always face an instance of the TV class \cite{rule-based-layout}. An implicitly defined relationship uses feature types, these are used for checking what objects should and should not overlap. These are implemented as tags and are applied to specific parts of objects - for example an \textit{OffLimit} feature type tag would be used for the bounding box of most objects \cite{rule-based-layout}.
+%The relationships between different objects could be explicitly and implicitly defined. A user is able to explicitly create a rule in an objects class or use features. An implicitly defined relationship uses feature types, these are used for checking what objects should and should not overlap. These are implemented as tags and are applied to specific parts of objects - for example an \textit{OffLimit} feature type tag would be used for the bounding box of most objects \cite{rule-based-layout}.
 
-Rules can be defined in multiple ways too. They can be associated specifically with an object class or defined in the layout planner. % - this would help with objects that general rules may not be applicable to. An example listed by the authors is a chair in a meeting room, this type of object is usually sat against a wall - so this rule would be applied in a "Waiting Room" layout \cite{rule-based-layout}.
+Rules can be defined in multiple ways - they can be associated specifically with an object class or defined in the layout planner.
+An example of defining a rule with an object class, as told by the authors, is by setting a rule for a sofa to always face an instance of a TV \cite{rule-based-layout}. 
 The layout planner is responsible for sending objects to the solver. The planner can have custom rules to allow it to be applicable to different room layouts (living room, factory floor, waiting room). It also has a backtracking rule that is only triggered if an object of interest is not placeable. If this is the case, the planner would backtrack to place previous objects in different positions to allow this object to be placed.
 
-The solver is given an object from this planner and the layout. With this, it finds all possible locations for the new object - \hl{these possible locations are initially based upon the set rules of the object and the rules already set in place for existing objects in the layout}. The possible locations then take specific feature types into account, such as the amount of clearance an object requires or the \textit{OffLimit} tag that was mentioned earlier \cite{rule-based-layout}. A Minkowski Sum \cite{minkowski} is carried out containing these inaccessible areas and removed from the list of possible locations.
+The solver is given an object from this planner and the current layout. With this, it finds all possible locations for the new object - these locations are based upon the rules of this object and the rules already set in place for existing objects in the layout. 
+The possible locations then take specific parameters into account, such as the amount of clearance an object requires or if an object's area is off limits (for example its bounding box)\cite{rule-based-layout}. A Minkowski Sum \cite{minkowski} is carried out containing these inaccessible areas and removed from the list of possible locations.
 With this completed, the object is then given a list of all possible locations in the layout it can be placed.
 
 \hl{Something good. Something bad.}
 
 \bigskip
 \subsubsection{Constraints}
-In 2017 P. Henderson, K. Subr and V. Ferrari presented a data driven system that learns from the SUNCG \cite{suncg} database to generate furniture layouts \cite{constrained-layouts}. This database contains over 45000 apartment layouts that are designed by humans, from this database - 2500 models are categorised into 170 furniture object classes.
+\textit{P. Henderson, et al.} \cite{constrained-layouts} presented a data driven system that learns from the SUNCG \cite{suncg} database to generate furniture layouts. This database contains over 45000 apartment layouts that are designed by humans, from this database - 2500 models are categorised into 170 furniture object classes.
 Their system is presented in such a way that it can be left to be fully automated \cite{constrained-layouts}, but does allow flexibility with the user allowing them to change constraints within the layout.\\
 These constraints include:
 \begin{itemize}
