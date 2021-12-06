@@ -1,9 +1,10 @@
 \documentclass[journal]{IEEEtran}
 \usepackage{amsmath,amsfonts}
-\usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{algorithm}
 \usepackage{array}
 \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\usepackage{caption}
 \usepackage{textcomp}
 \usepackage{stfloats}
 \usepackage{url}
@@ -13,6 +14,13 @@
 \usepackage{color, soul}
 \usepackage{hyperref}
 \hyphenation{op-tical net-works semi-conduc-tor IEEE-Xplore}
+
+\newcommand{\SWITCH}[1]{\State \textbf{switch} (#1)}
+\newcommand{\ENDSWITCH}{\State \textbf{end switch}}
+\newcommand{\CASE}[1]{\State \textbf{case} #1\textbf{:}}
+\newcommand{\ENDCASE}{\State \textbf{end case}}
+\newcommand{\CASELINE}[1]{\State \textbf{case} #1\textbf{:} }
+
 
 \begin{document}
 

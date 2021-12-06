@@ -34,3 +34,6 @@ Subr
 ScriptableObject
 Feigenbaum
 Boden
+AgentState
+PossibleParent
+Behaviour
