@@ -4,16 +4,16 @@
 \subsection{Implementations of Procedural Interior Generation}
 Although PCG has a lot to show and offer in game development, the use of Procedural Interior Generation (PCIG) in games however is scarcely come by.
 \\
-A game that does use PCIG is Catlateral Damage \cite{game:catlateral},
-a small indie game developed by Manekoware where you play as a cat on a destructive rampage 
-in its own house. In 2017, Chris Chung (the developer behind the game) wrote a case study about the level design in his game \cite[Chapter~6]{pcg_in_gd}. When developing Catlateral Damage, Chung was undecided on how to design the levels and ultimately went for PCIG\cite[Chapter~6]{pcg_in_gd}. Before the interior decoration can take place, a Squarified Treemap algorithm is used to generate the room layouts and floor plans within the level \cite{squarified-treemap}. Each room generated from this algorithm has an associated data file, containing information such as furniture available and maximum type of each furniture. The furniture objects that can be placed, have physics components attached to allow them to be accurately placed within the level - for this, a Rectangle Packing algorithm \cite{rectangle-packing} is used to place these objects within allocated surface areas on the floor and on top other furniture objects. Concluding the case study, Chung states that most players could not notice that the levels were procedurally generated - although this is a promising statement, Chung has not shown any evidence to back this claim.
-\\
-\hl{On 29th April 2021, Sony Interactive Entertainment published patent US20210121781, titled "AI-Generated Internal Environments Based On External Geometry" CITE PATENT. The patents' description goes onto explain a Machine Learning (ML) tool that takes in data from the external structure of a virtual building and generates an interior environment just from this data.Although this is just a patent for an ML tool, this could be the start of PCIG being used in AAA Titles.}
+A game that does use PCIG is Catlateral Damage \cite{game:catlateral}, a small indie game developed by Manekoware where you play as a cat on a destructive rampage in its own house. In 2017, Chris Chung (the developer behind the game) wrote a case study about the level design in his game \cite[Chapter~6]{pcg_in_gd}. When developing Catlateral Damage, Chung was undecided on how to design the levels and ultimately went for PCIG\cite[Chapter~6]{pcg_in_gd}. Before the interior decoration can take place, a Squarified Treemap algorithm is used to generate the room layouts and floor plans within the level \cite{squarified-treemap}. Each room generated from this algorithm has an associated data file, containing information such as furniture available and maximum type of each furniture. The furniture objects that can be placed, have physics components attached to allow them to be accurately placed within the level - for this, a Rectangle Packing algorithm \cite{rectangle-packing} is used to place these objects within allocated surface areas on the floor and on top other furniture objects. Concluding the case study, Chung states that most players could not notice that the levels were procedurally generated - although this is a promising statement, Chung has not shown any evidence to back this claim.
+
 \bigskip
+\hl{On 29th April 2021, Sony Interactive Entertainment published patent US20210121781, titled "AI-Generated Internal Environments Based On External Geometry" CITE PATENT. The patents' description goes onto explain a Machine Learning (ML) tool that takes in data from the external structure of a virtual building and generates an interior environment just from this data. Although this is just a patent for an ML tool, this could be the start of PCIG being used in AAA Titles.}
 
-
+\bigskip
 Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have used their own techniques to emulate room interiors.
-\subsubsection*{Multi-Agent System}
+
+\bigskip
+\subsubsection{Multi-Agent System}
 In 2009, T. Germer and M. Schwarz sought out to procedurally arrange a rooms' furniture in real-time. \cite{real-time-walkthroughs}\cite{youtube:real-time-walkthroughs}. This system involves a Multi-Agent based solution where each furniture object, in a given room, is seen as an individual agent that seeks a suitable parent furniture object. These agents have custom semantic descriptions to allow them to create different object layouts, an example listed by the authors is a chair - a chair can either be set next to a table/desk but can also be isolated in its own surroundings leading it to have many possible parent objects.\\
 Each agent has 3 states:
 \begin{enumerate}
@@ -37,7 +37,8 @@ A user is also required to write the semantic description of each type of object
 \hl{Something good, something bad}
 \hl{Although a large proportion of the rooms furnishing is handled by the agents themselves, a big drawback is that each agent must have a manually defined semantic description. This could cause a lot of issues especially if many types of objects are to be used in a room.}
 
-\subsubsection*{Rule-Based Layout}
+\bigskip
+\subsubsection{Rule-Based Layout}
 A Rule-Based layout approach was proposed in 2009, this method would focus on user defined rules and layouts \cite{rule-based-layout}. Users would be able to specify what objects can be placed within a layout - these would represent an instance of a class and contain certain rules on how it should behave when being placed.
 
 The relationships between different objects could be explicitly and implicitly defined. A user is able to explicitly create a rule in an objects class or use features. An example of explicitly defining a relationship, as told by the authors, is by setting a rule for the sofa class to always face an instance of the TV class \cite{rule-based-layout}.
@@ -52,7 +53,8 @@ With this completed, the object is then given a list of all possible locations i
 
 \hl{Something good. Something bad.}
 
-\subsubsection*{Constraints}
+\bigskip
+\subsubsection{Constraints}
 In 2017 P. Henderson, K. Subr and V. Ferrari presented a data driven model that learns from the SUNCG \cite{suncg} database to generate furniture layouts \cite{constrained-layouts}. This database contains over 45000 apartment layouts that are designed by humans, from this database - 2500 models are categorised into furniture and then further categorised into 170 object classes.
 Their model is presented in such a way that it can be left to be fully automated \cite{constrained-layouts}, but does allow flexibility with the user allowing them to change constraints within the layout.\\
 These constraints include:
@@ -76,7 +78,8 @@ Constrained layouts were only presented in an overhead format, but two sets of c
 
 \hl{Something good. Something user study. Something bad.}
 
-\subsubsection*{Statistical Relationships}
+\bigskip
+\subsubsection{Statistical Relationships}
 In 2011, a PCIG system using statistical relationships was proposed\cite{make-it-home}\cite{youtube:make-it-home}. This system would take in existing relationships from previous working examples (spatial, hierarchical and pairwise relationships) and pass these relationships into a cost function. The spatial relationship represents the objects distance and orientation to its nearest wall. The hierarchical relationship, similar to other papers, represents a child/parent relationship between objects - for example a candle (child) placed on a table (parent). The pairwise relationship represents the interaction between different pairs of objects (TV and a sofa), these pairs are subject to each other's distance and orientation.
 %Before the cost function is used in this system, a mix of Simulated Annealing and the Metropolis-Hastings (M-H) algorithm is used.
 %Simulated Annealing originates from the physical process Annealing used to heat objects to remove defects and slowly bring the object back down into a low-energy state \cite{simulated-annealing} - in this system, it is used for the placement of the furniture. At first the objects are "heated up" to allow for more freedom whilst they are arranging until they "cool down", with each temperature decrement the cost function is called to evaluate the current state of the arrangement.
@@ -110,6 +113,8 @@ There are 5 stages to the cost function - each stage has an individual weighting
 To see if the use of the cost function did produce furniture arrangements with a realistic/functional state, the system was put to the test in a perceptual study against human designed interiors. 25 volunteers (14 of which stated that they did not have any expertise in interior design) were used in this study and were unaware of its true purpose. Each participant viewed a total of 35 pairs, in each pair containing a synthesized and a human designed arrangement. The participants were told to select the furniture arrangement that they would prefer (live, stay, work or visit). The synthesized arrangement would only be considered to have been the victor if the human designs were not shown as the "clear" winners within the results. Of the 35 pairs shown to the volunteers, only 13 synthesized arrangements were seen to be the preferred choice.
 
 \hl{Something good. Something bad.}
+
+\bigskip
 
 \subsection{Artificial Intelligence Compared to Humans}
 This is going to be a little more difficult to write about, as I haven't read a paper on this so far. And I have only managed to find 3 papers that talk about this, but I am not sure that they could be entirely relevant.
