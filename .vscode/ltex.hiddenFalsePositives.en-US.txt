@@ -14,3 +14,4 @@
 {"rule":"ENGLISH_WORD_REPEAT_RULE","sentence":"^\\QPathways Pathways within the furniture arrangements are created using Cubic Bezier Curves Prior Spatial Relationships 4 Pairwise Relationships 5\\E$"}
 {"rule":"ENGLISH_WORD_REPEAT_RULE","sentence":"^\\QSomething something collision happens Rest In the Rest state, potential child agents are now able to seek this object as a parent.\\E$"}
 {"rule":"PREPOSITION_VERB","sentence":"^\\QArrange In the Arrange state, the agent attempts to position itself with the parent accordingly.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_RULE","sentence":"^\\QAlan Turing proposed the question \"Can Machines Think?\" multiple factors such as philosophy, psychology, Imitation game game of A and B between a judge who has to decide which is the human\\E$"}
