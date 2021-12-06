@@ -9,7 +9,7 @@ A game that does use PCIG is Catlateral Damage \cite{game:catlateral}, a small i
 On 29th April 2021, Sony Interactive Entertainment published patent US20210121781, titled "AI-Generated Internal Environments Based On External Geometry" \cite{sony-patent}. The patents' description goes onto explain a Machine Learning (ML) tool that takes in data from the external structure of a virtual building and generates an interior environment just from this data. Although this is just a patent for an ML tool, this could be the start of PCIG being used more commonly in the Games industry.
 
 \bigskip
-Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have used their own techniques to emulate room interiors. I will explain how these implementations work and \hl{something conclusion based on each one}.
+Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have used their own techniques to emulate room interiors. I will explain the key elements of these implementations and \hl{something conclusion based on each one}.
 
 \bigskip
 \subsubsection{Multi-Agent System}
@@ -44,12 +44,9 @@ A Rule-Based layout approach was proposed in 2009, users would be able to specif
 
 %The relationships between different objects could be explicitly and implicitly defined. A user is able to explicitly create a rule in an objects class or use features. An implicitly defined relationship uses feature types, these are used for checking what objects should and should not overlap. These are implemented as tags and are applied to specific parts of objects - for example an \textit{OffLimit} feature type tag would be used for the bounding box of most objects \cite{rule-based-layout}.
 
-Rules can be defined in multiple ways - they can be associated specifically with an object class or defined in the layout planner.
-An example of defining a rule with an object class, as told by the authors, is by setting a rule for a sofa to always face an instance of a TV \cite{rule-based-layout}. 
-The layout planner is responsible for sending objects to the solver. The planner can have custom rules to allow it to be applicable to different room layouts (living room, factory floor, waiting room). It also has a backtracking rule that is only triggered if an object of interest is not placeable. If this is the case, the planner would backtrack to place previous objects in different positions to allow this object to be placed.
+Rules can be defined in multiple ways - they can be associated specifically with an object class or defined in the layout planner. An example of defining a rule with an object class, as told by the authors, is by setting a rule for a sofa to always face an instance of a TV. The layout planner is responsible for sending objects to the solver. The planner can have custom rules to allow it to be applicable to different room layouts (living room, factory floor, waiting room). It also has a backtracking rule that is only triggered if an object of interest is not placeable. If this is the case, the planner would backtrack to place previous objects in different positions to allow this object to be placed.
 
-The solver is given an object from this planner and the current layout. With this, it finds all possible locations for the new object - these locations are based upon the rules of this object and the rules already set in place for existing objects in the layout. 
-The possible locations then take specific parameters into account, such as the amount of clearance an object requires or if an object's area is off limits (for example its bounding box)\cite{rule-based-layout}. A Minkowski Sum \cite{minkowski} is carried out containing these inaccessible areas and removed from the list of possible locations.
+The solver is given an object from this planner and the current layout. With this, it finds all possible locations for the new object - these locations are based upon the rules of this object and the rules already set in place for existing objects in the layout. The possible locations then take specific parameters into account, such as the amount of clearance an object requires or if an object's area is off limits (for example its bounding box)\cite{rule-based-layout}. A Minkowski Sum \cite{minkowski} is carried out containing these inaccessible areas and removed from the list of possible locations.
 With this completed, the object is then given a list of all possible locations in the layout it can be placed.
 
 \hl{Something good. Something bad.}
@@ -86,7 +83,7 @@ In 2011, a PCIG system using statistical relationships was proposed\cite{make-it
 %Simulated Annealing originates from the physical process Annealing used to heat objects to remove defects and slowly bring the object back down into a low-energy state \cite{simulated-annealing} - in this system, it is used for the placement of the furniture. At first the objects are "heated up" to allow for more freedom whilst they are arranging until they "cool down", with each temperature decrement the cost function is called to evaluate the current state of the arrangement.
 %Each decrement in temperature, the M-H algorithm is used (a Markov Chain method that is used for passing multiple positional variables to the simulated annealing process \cite{understanding-mh-algorithm}).
 %As stated earlier, the use of the cost function is to quantify the realism/functionality of the state of the furniture arrangement. 
-The cost function is used to quantify the realism or functionality \hl{ of the state of the furniture arrangement}. The higher the cost of an object, the higher the priority it takes. 
+The cost function is used to quantify the realism or functionality of the state of the furniture arrangement. The higher the cost of an object, the higher the priority it takes. 
 There are 5 stages to the cost function - each stage has an individual weighting and adds to the overall cost of the objects' arrangement.
 \begin{itemize}
     \item Accessibility
