@@ -20,3 +20,4 @@
 {"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\QPCG has many applications in video games, some notorious examples being the world/cave generation in Minecraft \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, the texture\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and world generation\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q in Spore \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and the procedural texture and music generation in .kkrieger \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"ENGLISH_WORD_REPEAT_RULE","sentence":"^\\QI will explain the key elements of these implementations and something something conclusion based on each one.\\E$"}
 {"rule":"ENGLISH_WORD_REPEAT_RULE","sentence":"^\\QSomething something See Fig. 1\\E$"}
+{"rule":"VERY_UNIQUE","sentence":"^\\QThe use of statistics to evaluate the relationships of each object in the layout is the most unique technique that I have read in my literature review.\\E$"}

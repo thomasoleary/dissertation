@@ -9,26 +9,26 @@ A game that does use PCIG is Catlateral Damage \cite{game:catlateral}, a small i
 On 29th April 2021, Sony Interactive Entertainment published patent US20210121781, titled "AI-Generated Internal Environments Based On External Geometry" \cite{sony-patent}. The patents' description goes onto explain a Machine Learning (ML) tool that takes in data from the external structure of a virtual building and generates an interior environment just from this data. Although this is just a patent for an ML tool, this could be the start of PCIG being used more commonly in the Games industry.
 
 \bigskip
-Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have used their own techniques to emulate room interiors. I will explain the key elements of these implementations and \hl{something something conclusion based on each one}.
+Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have used their own techniques to emulate room interiors. I will explain the key elements of these implementations and will give my view on what does and doesn't work with these implementations.
 
 \bigskip
 \subsubsection{Multi-Agent System}
-In 2009, \textit{T. Germer, et al.} \cite{real-time-walkthroughs} sought out to procedurally arrange a rooms' furniture in real-time. 
+In 2009, \italic{T. Germer, et al.} \cite{real-time-walkthroughs} sought out to procedurally arrange a rooms' furniture in real-time. 
 The aim for this system was to allow the quick generation of a rooms' interior while a player is walking around a building - a live demonstration of this can be viewed on YouTube \cite{youtube:real-time-walkthroughs}.
 This system involves a Multi-Agent (M-A) based solution where each furniture object, in a given room, is seen as an individual agent that seeks a suitable parent furniture object. These agents have custom semantic descriptions to allow them to create different object layouts. %, an example listed by the authors is a chair - a chair can either be set next to a table/desk but can also be isolated in its own surroundings leading it to have many possible parent objects.\\
 Each agent has 3 states:
 \begin{enumerate}
     \item Search
         \begin{itemize}
-            \item All agents start in this state, they begin by searching for possible parent objects - if a parent is found that suits its semantics, the agents' state changes to \textit{Arrange}, if a parent can't be found at all the agent is deleted.
+            \item All agents start in this state, they begin by searching for possible parent objects - if a parent is found that suits its semantics, the agents' state changes to \italic{Arrange}, if a parent can't be found at all the agent is deleted.
         \end{itemize}
     \item Arrange
         \begin{itemize}
-            \item In the \textit{Arrange} state, the agent attempts to position itself with the parent accordingly. Whilst doing so, the Separating Axis Theorem \cite{separating-axis-thereom} is used to check for collisions - if no collisions are found the agents' state changes to \textit{Rest}. If a collision does occur however, it must attempt to re-position itself with the parent.
+            \item In the \italic{Arrange} state, the agent attempts to position itself with the parent accordingly. Whilst doing so, the Separating Axis Theorem \cite{separating-axis-thereom} is used to check for collisions - if no collisions are found the agents' state changes to \italic{Rest}. If a collision does occur however, it must attempt to re-position itself with the parent.
         \end{itemize}
     \item Rest
         \begin{itemize}
-            \item In the \textit{Rest} state, potential child agents are now able to seek this object as a parent. If the parent moves, the resting agent will move along with it - however if this move results in a collision, its parent is lost and the agents state is changed back to \textit{Search}.
+            \item In the \italic{Rest} state, potential child agents are now able to seek this object as a parent. If the parent moves, the resting agent will move along with it - however if this move results in a collision, its parent is lost and the agents state is changed back to \italic{Search}.
         \end{itemize}
 \end{enumerate}
 %Before using this system, it requires a certain degree of user input \cite{real-time-walkthroughs}. Firstly, each room would need to have specific data such as labelled parts of the room (windows, floor, doors) and how many objects can be in the room. A user is also required to write the semantic description of each type of object - these include potential parent types and the amount of clearance the object requires.
@@ -42,18 +42,18 @@ Another issue with this implementation is that the system is never evaluated bas
 \subsubsection{Rule-Based Layout}
 A Rule-Based layout approach was proposed in 2009, users would be able to specify what objects can be placed within a layout - these would represent an instance of a class and contain certain rules on how it should be placed \cite{rule-based-layout}.
 
-%The relationships between different objects could be explicitly and implicitly defined. A user is able to explicitly create a rule in an objects class or use features. An implicitly defined relationship uses feature types, these are used for checking what objects should and should not overlap. These are implemented as tags and are applied to specific parts of objects - for example an \textit{OffLimit} feature type tag would be used for the bounding box of most objects \cite{rule-based-layout}.
+%The relationships between different objects could be explicitly and implicitly defined. A user is able to explicitly create a rule in an objects class or use features. An implicitly defined relationship uses feature types, these are used for checking what objects should and should not overlap. These are implemented as tags and are applied to specific parts of objects - for example an \italic{OffLimit} feature type tag would be used for the bounding box of most objects \cite{rule-based-layout}.
 
 Rules can be defined in multiple ways - they can be associated specifically with an object class or defined in the layout planner. An example of defining a rule with an object class, as told by the authors, is by setting a rule for a sofa to always face an instance of a TV. The layout planner is responsible for sending objects to the solver. The planner can have custom rules to allow it to be applicable to different room layouts (living room, factory floor, waiting room). It also has a backtracking rule that is only triggered if an object of interest is not placeable. If this is the case, the planner would backtrack to place previous objects in different positions to allow this object to be placed.
 
 The solver is given an object from this planner and the current layout. With this, it finds all possible locations for the new object - these locations are based upon the rules of this object and the rules already set in place for existing objects in the layout. The possible locations then take specific parameters into account, such as the amount of clearance an object requires or if an object's area is off limits (for example its bounding box)\cite{rule-based-layout}. A Minkowski Sum \cite{minkowski} is carried out containing these inaccessible areas and removed from the list of possible locations.
 With this completed, the object is then given a list of all possible locations in the layout it can be placed.
 
-\hl{Something good. Something bad.}
+A good approach taken for this implementation was the use of abstract classes - to allow easier expansion of new furniture. One issue I could see with this however is accidentally creating the same rules on multiple types of classes (perhaps on classes that do not derive from a similar parent). This implementation is also never tested for realism, to check if the layouts produced by the system are plausible and deemed natural (\italic{of human design}).
 
 \bigskip
 \subsubsection{Constraints}
-\textit{P. Henderson, et al.} \cite{constrained-layouts} presented a data driven system that learns from the SUNCG \cite{suncg} database to generate furniture layouts. This database contains over 45000 apartment layouts that are designed by humans, from this database - 2500 models are categorised into 170 furniture object classes.
+\italic{P. Henderson, et al.} \cite{constrained-layouts} presented a data driven system that learns from the SUNCG \cite{suncg} database to generate furniture layouts. This database contains over 45000 apartment layouts that are designed by humans, from this database - 2500 models are categorised into 170 furniture object classes.
 Their system is presented in such a way that it can be left to be fully automated \cite{constrained-layouts}, but does allow flexibility with the user allowing them to change constraints within the layout.\\
 These constraints include:
 \begin{itemize}
@@ -63,22 +63,23 @@ These constraints include:
     \item Locations of specified furniture
     \item Locations of doors \& windows
 \end{itemize}
+
 %Upon generating layouts, the results varied dependent on the set constraints applied to the room. Layouts that had no set constraints were found to be generating in 0.04 seconds on average \cite{constrained-layouts}. Whereas layouts that did have constraints generated anywhere between 0.04-112 seconds on average \cite{constrained-layouts}. The large differences in generation times vary solely on what constraints are applied -  room size, object exclusion and clearance constraints all generated in 0.04 seconds on average, whereas the combination of room size and the locations of doors \& windows took around 112 seconds to generate.
 
 A user study was carried out in their paper, where 1400 pairs of layouts are presented to 8 non-experts in an image format \cite{constrained-layouts}. These participants are asked to identify the layout that has a more realistic/natural setting. In each pair one layout is from their system, the other being human designed - the order in which the images are shown is randomised per pair.
-In this study, both constrained and unconstrained layouts are put to the test. For unconstrained layouts, they were presented in 2 different styles; 1st person and an overhead view. Layouts that were presented in 1st person, were seen to be slightly preferred over the human designs \hl{and those presented overhead were seen to be indistinguishable from human designs}.
-Constrained layouts were only presented in an overhead format, but two sets of constraints were used:
+In this study, both constrained and unconstrained layouts are put to the test. For unconstrained layouts, they were presented in 2 different styles; 1st person and an overhead view. Layouts that were presented in 1st person, were seen to be slightly preferred over the human designs and layouts presented in the overhead format were seen to be almost identical to human designs.
+Constrained layouts were only presented in the overhead format, but two sets of constraints were used:
 \begin{enumerate}
     \item[i.] Fixed room size \& fixed placement of a singular object
     \item[ii.] Fixed room size \& fixed door/window locations
 \end{enumerate}
-\hl{With the constrained layouts of (i), the model layouts were seen to be indistinguishable from those of human design. Whereas the layouts of (ii), human designs were preferred over the models.}
+When referring to the results of (i), the constrained layouts were seen to be almost identical to that of human design. Whereas the results of (ii), showed that human designs were preferred over the constraints.
 
-\hl{Something good. Something user study. Something bad.}
+The use of the user accessible constraints for this approach allows a lot of freedom when designing the layouts and the use of some of these constraints proves that it can be seen as human design \cite{constrained-layouts}.
 
 \bigskip
 \subsubsection{Statistical Relationships}
-In 2011, a PCIG system using statistical relationships was proposed\cite{make-it-home}\cite{youtube:make-it-home}. \hl{This system would take in existing relationships from previous working examples (spatial, hierarchical and pairwise relationships) and pass these relationships into a cost function}. The spatial relationship represents the objects distance and orientation to its nearest wall. The hierarchical relationship represents a child/parent relationship between objects - for example a candle (child) placed on a table (parent). The pairwise relationship represents the interaction between different pairs of objects (TV and a sofa), these pairs are subject to each other's distance and orientation.
+In 2011, a PCIG system using statistical relationships was proposed\cite{make-it-home}\cite{youtube:make-it-home}. This system uses 3 types of object relationships and utilizes these to calculate the \italic{cost} of the current arrangement until one is of satisfactory price. The spatial relationship represents the objects distance and orientation to its nearest wall. The hierarchical relationship represents a child/parent relationship between objects - for example a candle (child) placed on a table (parent). The pairwise relationship represents the interaction (distance and orientation) between different pairs of objects (TV and a sofa).
 %Before the cost function is used in this system, a mix of Simulated Annealing and the Metropolis-Hastings (M-H) algorithm is used.
 %Simulated Annealing originates from the physical process Annealing used to heat objects to remove defects and slowly bring the object back down into a low-energy state \cite{simulated-annealing} - in this system, it is used for the placement of the furniture. At first the objects are "heated up" to allow for more freedom whilst they are arranging until they "cool down", with each temperature decrement the cost function is called to evaluate the current state of the arrangement.
 %Each decrement in temperature, the M-H algorithm is used (a Markov Chain method that is used for passing multiple positional variables to the simulated annealing process \cite{understanding-mh-algorithm}).
@@ -88,15 +89,15 @@ There are 5 stages to the cost function - each stage has an individual weighting
 \begin{itemize}
     \item Accessibility
         \begin{itemize}
-            \item For an object to be "functional", it must be accessible. Each object has a defined \textit{Accessible Space} as well as \textit{Bounding Box}. If another object enters an \textit{Accessible Space}, the cost increases. %Within this function, only the objects positional values are passed as it was found to be better for optimization.
+            \item Every object must be accessible in the 3D space. Each object has a defined \italic{Accessible Space} as well as \italic{Bounding Box}. If another object enters an \italic{Accessible Space}, the cost increases. %Within this function, only the objects positional values are passed as it was found to be better for optimization.
         \end{itemize}
     \item Visibility
         \begin{itemize}
-            \item Certain objects must be viewed from a specific direction - these objects are given a \textit{Viewing Frustum} (some objects include TV's and paintings). Similarly to the Accessibility cost function, whenever another object obstructs a \textit{Viewing Frustum}, the frustums values are passed in and the cost increases.
+            \item Certain objects must be viewed from a specific direction - these objects are given a \italic{Viewing Frustum} (some objects include TV's and paintings). Similarly to the Accessibility cost function, whenever another object obstructs a \italic{Viewing Frustum}, the frustums values are passed in and the cost increases.
         \end{itemize}
     \item Pathways
         \begin{itemize}
-            \item Within the furniture arrangements, pathways are created using \textit{Cubic Bézier curves}. These curves are represented as rectangles in the 3D space. The cost function is similar to that of Accessibility \& Visibility, yet in this case the control points of the \textit{Bézier curve} is used as the positional value and applied to the rectangles used to represent the pathway in the arrangement.
+            \item Within the furniture arrangements, pathways are created using \italic{Cubic Bézier curves}. These curves are represented as rectangles in the 3D space. The cost function is similar to that of Accessibility \& Visibility, yet in this case the control points of the \italic{Bézier curve} are used as the positional value and applied to the rectangles used to represent the pathway in the arrangement.
         \end{itemize}
     \item Prior Spatial Relationships
         \begin{itemize}
@@ -107,18 +108,17 @@ There are 5 stages to the cost function - each stage has an individual weighting
             \item Similar to the Prior cost function, the pairwise cost function is defined to subtract the distance and orientation of the paired objects.
         \end{itemize}
 \end{itemize}
-To create the arrangement with the cost function, a mixture of Simulated Annealing and the Metropolis-Hastings (M-H) algorithm is used. Simulated Annealing originates from the physical process Annealing used to heat objects to remove defects and slowly bring the object back down into a low-energy state \cite{simulated-annealing} - in this system, it is used for the placement of the furniture. At first the objects are "\textit{heated up}" to allow for more freedom whilst they are arranging until they "\textit{cool down}", with each temperature decrement the cost function is called to evaluate the current iteration of the arrangement. With every iteration (or "\textit{temperature decrement}"), the M-H algorithm \cite{understanding-mh-algorithm} is used to compare the previous and the proposed new arrangement.
-
+To create the arrangement with the cost function, a mixture of Simulated Annealing and the Metropolis-Hastings (M-H) algorithm is used. Simulated Annealing originates from the physical process Annealing used to heat objects to remove defects and slowly bring the object back down into a low-energy state \cite{simulated-annealing} - in this system, it is used for the placement of the furniture. At first the objects are "\italic{heated up}" to allow for more freedom whilst they are arranging until they "\italic{cool down}", with each temperature decrement the cost function is called to evaluate the current iteration of the arrangement. With every iteration (or "\italic{temperature decrement}"), the M-H algorithm \cite{understanding-mh-algorithm} is used to compare the previous and the proposed new arrangement.
 
 To see if the use of the cost function did produce furniture arrangements with a realistic/functional state, the system was put to the test in a perceptual study against human designed interiors. 25 volunteers (14 of which stated that they did not have any expertise in interior design) were used in this study and were unaware of its true purpose. Each participant viewed a total of 35 pairs, in each pair containing a synthesized and a human designed arrangement. The participants were told to select the furniture arrangement that they would prefer. The synthesized arrangement would only be considered to have been the victor if the human designs were not shown as the "clear" winners within the results. Of the 35 pairs shown to the volunteers, only 13 synthesized arrangements were seen to be the preferred choice.
 
-\hl{Something good. Something bad.}
+The use of statistics to evaluate the relationships of each object in the layout is the most unique technique that I have read in my literature review. This would allow the system to work in full autonomy if all cost functions were to be set at a high weighting \cite{make-it-home}. As the nature of the perceptual study was just to test the authenticity of the synthesized arrangements, one key factor that may have been overlooked is the plethora of potential experience of those who did have experience/expertise in interior design. I believe by showing different data of those with and without experience, the results produced from the study may have been more insightful.
 
 %\subsection{Artificial Intelligence Compared to Humans}
-%In 1950, a mathematician named Alan Turing proposed the question; "\textit{Can Machines Think?}" \cite{turing}. %Within the paper he goes into a level of detail about the different factors behind answering such a large question, such as philosophy, psychology and math. 
-%As it is a large question, Turing replaces the question with the idea of a problem, called the "\textit{Imitation Game}" (or now modernly referred to as the \textit{Turing Test} (TT)). This \textit{game} involves 2 participants and a judge. The judge is hidden away from the participants and is informed to identify, through questioning, which participant is a man and which is a woman. In order for this \textit{game} to help answer Turing's question, one participant is replaced with a machine. If the judge chooses the machine at the end of the questioning, it is considered that it can "\textit{think}".
+%In 1950, a mathematician named Alan Turing proposed the question; "\italic{Can Machines Think?}" \cite{turing}. %Within the paper he goes into a level of detail about the different factors behind answering such a large question, such as philosophy, psychology and math. 
+%As it is a large question, Turing replaces the question with the idea of a problem, called the "\italic{Imitation Game}" (or now modernly referred to as the \italic{Turing Test} (TT)). This \italic{game} involves 2 participants and a judge. The judge is hidden away from the participants and is informed to identify, through questioning, which participant is a man and which is a woman. In order for this \italic{game} to help answer Turing's question, one participant is replaced with a machine. If the judge chooses the machine at the end of the questioning, it is considered that it can "\italic{think}".
 
-%In 2010, a new variation of the TT was proposed by Margaret Boden. This variation considers the TT oriented around artistic creativity, rather than the imitation of intelligence \cite{artistic-tt}. Art that is considered for this TT must be completely independent of human involvement, it is also stated that computer \textit{assisted} art does not count (the use of software such as Photoshop \cite{photoshop}).
+%In 2010, a new variation of the TT was proposed by Margaret Boden. This variation considers the TT oriented around artistic creativity, rather than the imitation of intelligence \cite{artistic-tt}. Art that is considered for this TT must be completely independent of human involvement, it is also stated that computer \italic{assisted} art does not count (the use of software such as Photoshop \cite{photoshop}).
 %For an art program to pass this variation it must:
 %\begin{enumerate}
     %\item Be indistinguishable from human produced artwork
