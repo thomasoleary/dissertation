@@ -13,7 +13,16 @@
 \usepackage{cite}
 \usepackage{color, soul}
 \usepackage{hyperref}
+\usepackage{listings}
 \hyphenation{op-tical net-works semi-conduc-tor IEEE-Xplore}
+
+\lstset{
+  basicstyle        = \ttfamily,
+  captionpos        = b,
+  columns           = fullflexible,
+  breaklines        = true,
+  postbreak         = \mbox{\textcolor{blue}{$\hookrightarrow$}\space},
+}
 
 \newcommand{\italic}[1]{{\textit{#1}}}
 
