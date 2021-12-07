@@ -1,7 +1,12 @@
-A participant will be told that they must decide between a certain amount* of paired rooms labelled A and B. 
-The participant will be told that there is something different between these rooms but should pick which room they prefer.
+participant will be shown 10 pairs of room layouts
+A/B 
+participant is told to pick which one they think is more realistic/authentic/one they would prefer to blah blah blah
 
-In each pair, one room is hand designed, the other is designed by Artificial Intelligence.
+In every pair, one is human designed the other Multi-Agent
+    with each pair the order is randomised
 
-After picking out of these pairs which one they prefer – the participant will be informed that one room in every pair is made by Artificial Intelligence.
-Said participant will now be told to select which room (in each pair) they believe is made by Artificial Intelligence.
+after this
+participant is informed that one in every pair is made by an AI/Multi-Agent system
+    said participant will now be told to select which room is the AI
+        in the 10 pairs
+
