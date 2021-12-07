@@ -9,7 +9,7 @@ A game that does use PCIG is Catlateral Damage \cite{game:catlateral}, a small i
 On 29th April 2021, Sony Interactive Entertainment published patent US20210121781, titled "AI-Generated Internal Environments Based On External Geometry" \cite{sony-patent}. The patents' description goes onto explain a Machine Learning (ML) tool that takes in data from the external structure of a virtual building and generates an interior environment just from this data. Although this is just a patent for an ML tool, this could be the start of PCIG being used more commonly in the Games industry.
 
 \bigskip
-Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have used their own techniques to emulate room interiors. I will explain the key elements of these implementations and \hl{something conclusion based on each one}.
+Despite there not being many implementations of PCIG in games, there are however a handful of published papers that have used their own techniques to emulate room interiors. I will explain the key elements of these implementations and \hl{something something conclusion based on each one}.
 
 \bigskip
 \subsubsection{Multi-Agent System}
@@ -34,7 +34,7 @@ Each agent has 3 states:
 %Before using this system, it requires a certain degree of user input \cite{real-time-walkthroughs}. Firstly, each room would need to have specific data such as labelled parts of the room (windows, floor, doors) and how many objects can be in the room. A user is also required to write the semantic description of each type of object - these include potential parent types and the amount of clearance the object requires.
 %Due to the parents of each object being manually set by the user in their semantic descriptions, a hierarchy is not explicitly defined - yet handled at run-time by the system just before the agents are initialised \cite{real-time-walkthroughs}.
 
-Although a large proportion of the rooms furnishing is handled by the agents themselves, a big drawback is that the system requires a lot of user input before this can happen. Every room must have clear user defined data and every object type must have manually defined semantic descriptions. If starting from scratch this process can take a long time, but each object type only requires a singular semantic description. Some objects with matching behaviors can also share semantics - this creates a lot of flexibility when designing the agents as they are \hl{completely autonomous of one another}\cite{real-time-walkthroughs}.
+Although a large proportion of the rooms furnishing is handled by the agents themselves, a big drawback is that the system requires a lot of user input before this can happen. Every room must have clear user defined data and every object type must have manually defined semantic descriptions. If starting from scratch this process can take a long time, but each object type only requires a singular semantic description. Some objects with matching behaviors can also share semantics - this creates a lot of flexibility when designing the agents as they are completely autonomous of one another\cite{real-time-walkthroughs}.
 Another issue with this implementation is that the system is never evaluated based upon how realistic or natural the furniture arrangements are based upon human designs. 
 
 
@@ -127,4 +127,4 @@ For an art program to pass this variation it must:
 \end{enumerate}
 This TT however does set concern for the concept of creativity as it is very much of personal opinion \cite{artistic-tt, tt-cc}. Although creativity is thought as indefinable, work that is considered creative can be seen as both appropriate and novel \cite{creativity}.
 
-paper that compares pcg to art \cite{pcg-vs-art}
+\hl{paper that compares pcg to art }\cite{pcg-vs-art}
