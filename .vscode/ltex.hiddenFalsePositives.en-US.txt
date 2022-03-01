@@ -21,3 +21,4 @@
 {"rule":"ENGLISH_WORD_REPEAT_RULE","sentence":"^\\QI will explain the key elements of these implementations and something something conclusion based on each one.\\E$"}
 {"rule":"ENGLISH_WORD_REPEAT_RULE","sentence":"^\\QSomething something See Fig. 1\\E$"}
 {"rule":"VERY_UNIQUE","sentence":"^\\QThe use of statistics to evaluate the relationships of each object in the layout is the most unique technique that I have read in my literature review.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QHypothesis 2.\\E$"}
