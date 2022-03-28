@@ -12,7 +12,11 @@ Through my literature review, there is evidence to show that PCIG should be comp
 
 % NEED TO REWRITE THIS SECTION
 \subsection{Artefact}
-The artefact is a Multi-Agent (M-A) system that will be used to create a room's furniture arrangement where each furniture is seen as an individual agent. The system is given an empty room and has access to pre-made furniture assets, at run time agents are spawned and arrange themselves accordingly (the behavior of a singular agent is demonstrated in Fig. ~\ref{activity-diagram}). The artefact will be influenced by the work from \textit{T. Germer, et al.} \cite{real-time-walkthroughs}.
+The artefact is a Multi-Agent (M-A) system that is used to create a room's furniture arrangement where each piece furniture is seen as an individual agent. The individual agents have their own semantic descriptions using Unity's \cite{unity} ScriptableObject class. Within these ScriptableObject's, they have information such as the type of furniture they are, the occupation of each of their sides and what other furniture types they can have as potential parents. The agents are represented in scene using pre-fabricated assets from a free-to-use Unity asset pack by Brick Project Studio \cite{brick-project}.
+
+\hl{A User must select what furniture they would like to be used within a}
+
+The system is given an empty room and has access to pre-made furniture assets, at run time agents are spawned and arrange themselves accordingly (the behavior of a singular agent is demonstrated in Fig. ~\ref{activity-diagram}). The artefact will be influenced by the work from \textit{T. Germer, et al.} \cite{real-time-walkthroughs}.
 
 % NEED TO REWRITE THIS SECTION
 \subsection{How it will be made} 
