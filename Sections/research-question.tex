@@ -20,11 +20,18 @@ Given this, I also propose the following hypotheses to investigate in order to h
 
 %The system is given an empty room and has access to pre-made furniture assets, at run time agents are spawned and arrange themselves accordingly (the behavior of a singular agent is demonstrated in Fig. ~\ref{activity-diagram}). The artefact will be influenced by the work from \textit{T. Germer, et al.} \cite{real-time-walkthroughs}.
 
-The artefact proposed to help answer my research question is a Multi-Agent (M-A) system that is used to create a room's furniture arrangement where each piece of furniture is seen as an individual agent. These individual agent's use the Unity's \cite{unity} ScriptableObject class to contain all necessary information about themselves. This information includes data such as the type of furniture they are, the occupation of each of their sides and what other furniture types they can have as a potential parent. The agents are represented in a scene using pre-fabricated assets from a free-to-use Unity asset pack by Brick Project Studio \cite{brick-project}.
+The artefact proposed to help answer my research question is a Multi-Agent (M-A) system that is used to create a room's furniture arrangement where each piece of furniture is seen as an individual agent. These individual agent's use the Unity's \cite{unity} ScriptableObject class to contain all necessary information about themselves. This information includes data such as the type of furniture they are, the occupation of each of their sides and what other furniture types they can have as a potential parent - see Fig~\ref{agent-so} for an example of an Agents ScriptableObject. The agents are represented in a scene using pre-fabricated assets from a free-to-use Unity asset pack by Brick Project Studio \cite{brick-project}.
 
 To generate a room's layout, the agents must have access to an empty room. In order for the furniture to be arranged, a user must place the furniture that they want to be placed in the Unity scene. Once the scene is running, the agents handle and place themselves accordingly within the room.
 All agents begin in a \italic{SEARCH} state, within this state the agent aims to find a potential parent that is defined within its ScriptableObject. Once a parent is found, the agent begins its \italic{ARRANGE} state where it places and orients itself appropriately. Once placed, the agents state changes to \italic{REST}. The behaviour of a singular agent used in the Artefact is also demonstrated in Fig.~\ref{activity-diagram}.
 The behaviour behind the agents in the artefact is influenced by the work from \textit{T. Germer, et al.} \cite{real-time-walkthroughs}.
+
+\begin{figure}[!ht]
+    \includegraphics[width=\columnwidth]{./Images/agent-SO.png}
+    \centering
+    \caption{Screenshot of an agent's ScriptableObject}
+    \label{agent-so}
+\end{figure}
 
 % NEED TO REWRITE THIS SECTION
 \subsection{Artefact Development \& Quality Assurance} 
