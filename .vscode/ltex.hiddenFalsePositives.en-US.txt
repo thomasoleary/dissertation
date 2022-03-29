@@ -22,3 +22,4 @@
 {"rule":"ENGLISH_WORD_REPEAT_RULE","sentence":"^\\QSomething something See Fig. 1\\E$"}
 {"rule":"VERY_UNIQUE","sentence":"^\\QThe use of statistics to evaluate the relationships of each object in the layout is the most unique technique that I have read in my literature review.\\E$"}
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QHypothesis 2.\\E$"}
+{"rule":"BACHELOR_ABBR","sentence":"^\\QA small pilot study was conducted with the help of some BSc peers.\\E$"}
