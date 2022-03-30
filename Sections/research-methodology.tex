@@ -1,6 +1,5 @@
 \section{Research Methodology}
-
-% NEED TO REWRITE THIS SECTION
+In order for me to test my hypotheses and answer the research question, the artefact was put to the test in a research study that involved 56 participants taking part in an estimated 5-minute test. The data collected in this short test was then analysed using the R programming language in a series of paired T-Tests.
 
 \subsection{Experimental Design}
 For my experimental design, a participant was shown 5 pairs of room layouts in the form of a 2 Staged A/B test.
@@ -36,16 +35,24 @@ I found this variant of the TT as a helpful source when designing the experiment
 \end{figure}
 
 
-\subsection{Sampling Plan}
-To help answer my Hypotheses, I will be using two tailed T-Tests to allow me to easily identify the relationship between the selection of Human and Artefact designed layouts.
-Using G*Power \cite{gpower}, I was able to calculate a sample size of 54 with an effect size of 0.5 - see Fig~\ref{gpower}.
+\subsection{Participants}
+Using G*Power to calculate a sample size for my research study, it was estimated that in order for my data to be significant with 95\% confidence - I required 54 participants to be involved in my research study (with an effect size of 0.5).
+The participants involved in my research study were primarily students from within the Games Academy at Falmouth University - as this is where the Artefact had under-gone its development and was the easiest solution to gain participants due to the time limitations of this research.
 
-\subsection{Data management plan}
+\subsection{Data Collection \& Management}
+For my data analysis, the main data required was whether or not the Artefact was picked in each pair and stage. In order for me to obtain this, each time a participant selected a room in a pair, a method would be called to write to a CSV file I had set up for my data collection. This method would write the participant ID, what stage of the study they were currently in, the pair ID, the name of the 2 rooms and a boolean that returned appropriately if the Artefact was picked in that pair.
 As explained in \hyperref[ethics]{\italic{Ethical Considerations}}, no personal information is collected in the research study, nor can any information collected in the research study can be used to identify participants - signifying that General Data Protection Regulation (GDPR) \cite{gdpr} does not need to be followed. Results collected from the study however were exported and stored in a CSV file - see Fig~\ref{csv-file}. This file was password encrypted to prevent any third party intervention.
 
+\begin{figure}[ht]
+    \includegraphics[width=\columnwidth]{./Images/csv-image.png}
+    \centering
+    \caption{CSV file used to store the data collected from the Research Study}
+    \label{csv-file}
+\end{figure}
 
-\subsection{Data Analysis}
-Once sufficient data was collected from the research study, I used the R language and R-Studio for my analysis. In the code sample listed in \hyperref[append:d]{Appendix B}, I have demonstrated how to complete a Two Tailed T-Test using data from an imported CSV file.
+
+% \subsection{Data Analysis}
+% Once sufficient data was collected from the research study, I used the R language and R-Studio for my analysis. In the code sample listed in \hyperref[append:d]{Appendix B}, I have demonstrated how to complete a Two Tailed T-Test using data from an imported CSV file.
 
 \subsection{Ethical Considerations}\label{ethics}
 As the research study requires human participants this creates a medium ethics risk according to the Falmouth University Ethics Board. To facilitate this risk, a Falmouth University ethics form was completed and signed off by the project Supervisor in consultation with the Head of Subject. The artefact itself is of low risk/concern as it is not used for militarization and participants are able to opt out at any point during their participation.
