@@ -59,15 +59,35 @@ if (h < 0.2){
 }
 paste("Effect Size:",h)
 
-# Run Binomial Test - to check if Artefact picks is sufficiently greater
-binom.test(artefactPicks, artefactPicks + humanPicks, 0.5, alternative = "greater")
+##### Z TEST APPROXIMATION FROM A BINOMIAL TEST #####
+
+# Calculating the Standard Deviation
+sD <- sqrt((artefactPicks + humanPicks) * expProp * (1 - expProp))
+
+# Calculating the population mean for a large sample size
+populationMean <- (artefactPicks + humanPicks) / 2
+
+# Calculating the Z score
+zScore <- (artefactPicks - populationMean) / sD
+paste("Z Score:",zScore)
+
+# Rounding Z score to 2 decimal places (standard)
+zScore <- round(zScore, 2)
+
+# Calculating P Value from Z Score
+pValue <- pnorm(zScore, lower.tail = FALSE)
+# Rounding P Value to 4 decimal places
+pValue <- round(pValue, 4)
+paste("P Value:",pValue)
+
+
+##### BAR CHART #####
 
 # Create Bar Chart
 df <- as.data.frame(s1PicksTable)
-df
-
 chartColours <- c("Artefact","Human")
 df <- cbind(df, chartColours)
+
 barChart <- ggplot(data=df, aes(x=s1PicksFactor, y=Freq, fill=chartColours)) + 
   geom_bar(colour="black", stat="identity", width = 0.75) +
   theme(text=element_text(size=20)) +

@@ -42,7 +42,7 @@ s2Prop <- s2PicksTable / sum(s2PicksTable)
 expProp <- 0.5
 
 # Cohens H to calculate effect size
-cohensH <- ES.h(s2Prop[1], expProp)
+cohensH <- ES.h(s2Prop[2], expProp)
 
 # For interpretation
 h <- abs(cohensH * sqrt(2))
@@ -59,15 +59,36 @@ if (h < 0.2){
 paste("Effect Size:",h)
 
 
-# Run Binomial Test - to check if Artefact picks are sufficiently less
-binom.test(artefactPicks, artefactPicks + humanPicks, alternative = "less")
+##### Z TEST APPROXIMATION FROM A BINOMIAL TEST #####
+
+# Calculating the Standard Deviation
+sD <- sqrt((artefactPicks + humanPicks) * expProp * (1 - expProp))
+
+# Calculating the population mean for a large sample size
+populationMean <- (artefactPicks + humanPicks) / 2
+
+# Calculating the Z score
+zScore <- (humanPicks - populationMean) / sD
+paste("Z Score:",zScore)
+
+# Rounding Z score to 2 decimal places (standard)
+zScore <- round(zScore, 2)
+
+# Calculating P Value from Z Score
+pValue <- pnorm(zScore, lower.tail = FALSE)
+# Rounding P Value to 4 decimal places
+pValue <- round(pValue, 4)
+paste("P Value:",pValue)
+
+
+
+##### BAR CHART #####
 
 # Create Bar Chart
 df <- as.data.frame(s2PicksTable)
-df
-
 chartColours <- c("Artefact","Human")
 df <- cbind(df, chartColours)
+
 barChart <- ggplot(data=df, aes(x=s2PicksFactor, y=Freq, fill=chartColours)) + 
   geom_bar(colour="black", stat="identity", width = 0.75) +
   theme(text=element_text(size=20)) +
