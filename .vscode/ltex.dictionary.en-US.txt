@@ -44,3 +44,5 @@ favourable
 U rban
 behaviour
 analysed
+analyse
+visualise
