@@ -47,3 +47,4 @@ analysed
 analyse
 visualise
 Biostatistical
+Artefacts
