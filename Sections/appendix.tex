@@ -1,4 +1,3 @@
-\newpage
 \section*{Appendix A - General} \label{append:a}
 Link to the Ethics form and Participant Information Sheet:
 
@@ -14,31 +13,11 @@ Link to the Computing Artefact GitHub repository:
     \label{gpower}
 \end{figure}
 
-
-
-\section*{Appendix B - Acknowledgements} \label{append:b}
-
-\section*{Appendix C - Reflective Addendum} \label{append:C}
-
-\newpage
-\section*{Appendix D - Data Analysis} \label{append:d}
-\begin{lstlisting}[language=R, caption = Example R code for a Two Tailed T-Test using data from an imported CSV file, captionpos =b]
-    # Load the necessary library to read from CSV files
-    library(readr)
-
-    # Load the CSV file
-    researchData <- read_csv("D:/R/ArtefactDataAnalysis/research_data.csv")
-
-    # Perform a Two Tailed T-Test
-    twoTailed <- t.test(researchData$artefactPicks , researchData$humanPicks)
-
-    # Summarise the results
-    summary(twoTailed)
-\end{lstlisting}
+\section*{Appendix B - Reflective Addendum} \label{append:b}
 
 
 \newpage
-\section*{Appendix E - Software Architecture} \label{append:e}
+\section*{Appendix C - Software Architecture} \label{append:c}
 \begin{figure}[!h]
     \includegraphics[width=\columnwidth]{./Images/AgentActivityDiagram.png}
     \centering
@@ -47,10 +26,10 @@ Link to the Computing Artefact GitHub repository:
 \end{figure}
 
 \newpage
-\section*{Appendix F - Testing} \label{append:f}
-The Unit tests for my artefact were created using Unity's Test Framework and were used throughout the Artefact's development to validate the code and to ensure the Artefact worked as intended. (Unit testing code can be seen in Appendix H).
+\section*{Appendix D - Testing} \label{append:d}
+The Unit tests for my artefact were created using Unity's Test Framework and were used throughout the Artefact's development to validate the code and to ensure the Artefact worked as intended. Unit testing code can be seen in \hyperref[append:f]{Appendix F} and passed Unit Tests can be seen in Fig~\ref{unit-tests}.
 \\
-A small pilot study was conducted with the help of some BSc peers. This pilot study was conducted to ensure the validity of my research methodology. It consisted of them taking part in my 2-staged A/B test, helping in testing the effectiveness of how room interiors were being represented - any feedback received from this small study was implemented into my methodology and no data from this pilot study was used within my data analysis.
+A small pilot study was conducted with the help of some BSc peers. This pilot study was conducted to ensure the validity of my experimental design. It consisted of them taking part in my 2-staged A/B test, helping in testing the effectiveness of how information was being represented - any feedback received from this small study was implemented into my methodology and no data from this pilot study was used within my data analysis.
 
 \begin{figure}[ht]
     \includegraphics[width=\columnwidth]{./Images/unit-tests.png}
@@ -61,11 +40,11 @@ A small pilot study was conducted with the help of some BSc peers. This pilot st
 
 \newpage
 \newpage
-\section*{Appendix G - R Code} \label{append:g}
+\section*{Appendix E - R Code} \label{append:e}
 \lstinputlisting[language=r, label=StageOneRCode,caption=R Code for Stage One data., captionpos=b]{Code/StageOneRCode.R}
 
 \lstinputlisting[language=r, label=StageTwoRCode,caption=R Code for Stage Two data., captionpos=b]{Code/StageTwoRCode.R}
 
 \newpage
-\section*{Appendix H - Unit Testing Code} \label{append:h}
+\section*{Appendix F - Unit Testing Code} \label{append:f}
 \lstinputlisting[language=csh, label=UnitTestCode, caption=Unit Test Code used to validate the Artefact's code., captionpos =b]{Code/UnitTesting.cs}
