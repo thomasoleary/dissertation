@@ -1,2 +1,3 @@
-# Dissertation Work
-Currently a repository where my COMP320 R&D: Practice - Literature Review & Proposal is being pushed to.
+# Dissertation
+## Can an Unknowing Participant distinguish between Multi-Agent Designed and Human Designed Interiors?
+Repository for my Dissertation
